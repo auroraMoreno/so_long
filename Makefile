@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+         #
+#    By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/03 14:33:48 by aumoreno          #+#    #+#              #
-#    Updated: 2024/08/06 13:09:28 by aumoreno         ###   ########.fr        #
+#    Updated: 2024/08/07 13:57:17 by aumoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 EXEC = so_long
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Werror -Wextra
 
 SRCS = main.c
 
