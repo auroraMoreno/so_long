@@ -6,7 +6,7 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 08:05:39 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/08/19 12:06:50 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/08/21 09:18:32 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ typedef struct mlx_data
 }mlx_data;
 
 // lista de s_data
-
-typedef struct lst_data
-{
-    void *index;
-    t_data img_ptr; 
-}
 
 typedef struct s_data {
     void *img_ptr;
