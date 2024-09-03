@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/02 12:23:23 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/03 09:10:12 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 #include "libft/libft.h"
 #include "ft_printf/ft_printf.h"
 
-typedef struct s_mlx_data
-{
-    void *mlx;
-    void *mlx_win; 
-}t_mlx_data;
 
 typedef struct s_img {
     void *img_ptr;
@@ -37,16 +32,19 @@ typedef struct s_img {
 
 typedef struct s_game_data
 {
-    t_mlx_data mlx;
+    void *mlx;
+    void *mlx_win; 
     t_img floor;
     t_img wall; 
+    // poner aqui el mapa 
     
 }t_game;
 
 
-int ft_handle_key(int keycode, t_mlx_data *data);
-int ft_close_window(t_mlx_data *data);
-
+int ft_handle_key(int keycode, t_game *data);
+int ft_close_window(t_game *data);
+t_game *ft_init_mlx();
+void *ft_init_images(t_game *game);
 
 
 // typedef struct s_img_data {
