@@ -6,7 +6,7 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:35:25 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/03 08:48:54 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:17:46 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int main(int argc, char **argv)
     /*inicializamos game
         mlx y window
     */
-   game = ft_init_mlx();
+   // le pasamos el fichero .ber 
+   game = ft_init_mlx(argv[1]);
    
     // poner los hooks para cerrar ventana y tal 
     mlx_hook(game->mlx_win,17,1L<<17,ft_close_window,game);

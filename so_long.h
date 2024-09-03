@@ -6,7 +6,7 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/03 09:10:12 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:20:45 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,26 @@ typedef struct s_game_data
     t_img floor;
     t_img wall; 
     // poner aqui el mapa 
+    t_map map; 
+    int   map_heigth;
+    int   map_width;
     
 }t_game;
+
+typedef struct  s_map
+{
+    int x;
+    int y;
+    
+}t_map;
 
 
 int ft_handle_key(int keycode, t_game *data);
 int ft_close_window(t_game *data);
 t_game *ft_init_mlx();
 void *ft_init_images(t_game *game);
+void ft_init_map(t_game game, void *file);
+void ft_render_map(t_game *game);
 
 
 // typedef struct s_img_data {
