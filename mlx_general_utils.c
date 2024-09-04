@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_general_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/03 11:24:56 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:08:57 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 
 void *ft_init_images(t_game *game)
 {
@@ -32,13 +33,40 @@ void *ft_init_images(t_game *game)
 
 void ft_init_map(t_game *game, void *file)
 {
+    int fd;
+    char *joined_str;
+    char *line; 
     // primero open el fichero 
-
+    fd = open(file, O_RDONLY);
+    if(fd == -1)
+    {
+        free(game);
+        free(file);
+        ft_putendl_fd("Error\n",2);
+        exit(EXIT_FAILURE);
+    }
     // luego tendremos que ir linea a linea 
+    joined_str = ft_calloc(1, sizeof(char));
+    if(!joined_str)
+    {
+        free(joined_str);
+        free(game);
+        ft_putendl_fd("Error\n",2);
+        exit(EXIT_FAILURE);
+    }
     //(podremos uusar el gnl i guess)
-
+    line = get_next_line(fd);
     // si resulta que es un cuadrado, devolvemos error 
-    
+    while(line)
+    {
+        //join the line 
+        //update line
+    }
+    close(fd);
+    //process map: the function will get the l¡height and width
+    //it will also check if the map is valid
+
+    free(joined_str); //since we are using join inside the loop 
     
 }
 
@@ -72,7 +100,6 @@ t_game *ft_init_mlx(void **file)
     //mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr,110,110);
         
     //renderizar la imagen en base al mapa .ber 
-
     /*
         de momento va a pintar solo el suelo pero luego pintará 
         los collectables y demás

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/03 11:20:45 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:40:20 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 #include "ft_printf/ft_printf.h"
+#include "gnl/get_next_line.h"
+# include <fcntl.h>
 
 
 typedef struct s_img {
@@ -30,6 +32,13 @@ typedef struct s_img {
     int y;
 } t_img;
 
+typedef struct  s_map
+{
+    int x;
+    int y;
+    
+}t_map;
+
 typedef struct s_game_data
 {
     void *mlx;
@@ -43,12 +52,6 @@ typedef struct s_game_data
     
 }t_game;
 
-typedef struct  s_map
-{
-    int x;
-    int y;
-    
-}t_map;
 
 
 int ft_handle_key(int keycode, t_game *data);

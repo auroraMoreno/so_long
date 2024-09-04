@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+         #
+#    By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/25 10:38:38 by aumoreno          #+#    #+#              #
-#    Updated: 2023/01/07 11:56:37 by aumoreno         ###   ########.fr        #
+#    Updated: 2024/09/04 12:00:47 by aumoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,11 @@ SRCS =  ft_isalpha.c  ft_isdigit.c  ft_isalnum.c  ft_isascii.c  ft_isprint.c \
 		ft_atoi.c     ft_calloc.c   ft_strdup.c \
 		ft_substr.c   ft_strjoin.c  ft_strtrim.c  ft_split.c    ft_itoa.c \
 		ft_strmapi.c  ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-		ft_putnbr_fd.c  
+		ft_putnbr_fd.c  \
+		gnl/get_next_line.c \
+		gnl/get_next_line_utils.c \
+		gnl/get_next_line_bonus.c \
+		gnl/get_next_line_utils_bonus.c
 
 
 OBJS = $(SRCS:.c=.o)
