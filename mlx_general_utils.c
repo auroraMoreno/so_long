@@ -3,15 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_general_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/04 14:08:57 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:57:30 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+//funcion para unir todo el mapa en una misma linea 
+// y asi sea más facil calcular el width y el height
+// maybe use it to parse too
+int ft_join_map_line(char *line, char **joined_str)
+{
+    char *aux;
+    aux = ft_strjoin(*joined_str,line);
+    //si da fallo we free line and joined_str
+    //devolvemos 0
+    if(!aux)
+    {
+        free(*joined_str);
+        free(line);
+        return (0);
+    }
+    //si todo va bien devolvemos 1 
+    free(joined_str);
+    free(line);
+    joined_str = aux;
+    //si está vacía: 
+    if(!*joined_str)
+        return(0);
+    return (1);
+}
+
+int ft_process_map_line(char *joined_str, t_game *game)
+{
+    // hay que obtener el width and height primero 
+    // porq lo vamos a usar en el map is valid 
+    //calculate width and height
+    ft_get_height(joined_str);
+    ft_get_width(joined_str);
+    
+    //check if map is valid
+    if(ft_map_is_valid() == 0)
+    {
+        free(joined_str);
+        free(game);
+        ft_putendl_fd("Map is not valid", 2);
+        exit(EXIT_FAILURE);
+    }
+    
+    // de momento returns int 1 si todo guay y 0 si algo va mal  
+}
 
 void *ft_init_images(t_game *game)
 {
@@ -40,6 +84,7 @@ void ft_init_map(t_game *game, void *file)
     fd = open(file, O_RDONLY);
     if(fd == -1)
     {
+        // esto ponerlo en una función aparte 
         free(game);
         free(file);
         ft_putendl_fd("Error\n",2);
@@ -60,12 +105,25 @@ void ft_init_map(t_game *game, void *file)
     while(line)
     {
         //join the line 
+        if(ft_join_map_line(line,joined_str) == 0)
+        {
+            free(game);
+            ft_putendl_fd("Error\n en init map",2);
+            exit(EXIT_FAILURE);
+        }
         //update line
+        line = get_next_line(fd);
     }
     close(fd);
-    //process map: the function will get the l¡height and width
+    //process map: the function will get the line height and width
     //it will also check if the map is valid
-
+    if(ft_process_map_line(joined_str, game) == 0)
+    {
+        free(joined_str);
+        free(game);
+        ft_putendl_fd("Error\n",2);
+        exit(EXIT_FAILURE);
+    }
     free(joined_str); //since we are using join inside the loop 
     
 }

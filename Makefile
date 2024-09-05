@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+         #
+#    By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/03 14:33:48 by aumoreno          #+#    #+#              #
-#    Updated: 2024/09/04 12:02:55 by aumoreno         ###   ########.fr        #
+#    Updated: 2024/09/05 10:07:18 by aumoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ EXEC = so_long
 CC = gcc
 CFLAGS = -Werror -Wextra
 
-SRCS = main.c mlx_general_utils.c
+SRCS = main.c mlx_general_utils.c map_utils.c
 
 FT_PRINTF_PATH = ft_printf/
 LIBFT_PATH = libft/

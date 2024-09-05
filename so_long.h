@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/04 13:40:20 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:35:10 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ t_game *ft_init_mlx();
 void *ft_init_images(t_game *game);
 void ft_init_map(t_game game, void *file);
 void ft_render_map(t_game *game);
+int ft_join_map_line(char **line, char **joined_str);
+int ft_process_map_line(char *joined_str);
+void ft_get_height(char *joined_str);
+void ft_get_width(char  *joined_str, t_game *game);
+int ft_map_is_valid(char *joined_str);
+
 
 
 // typedef struct s_img_data {
