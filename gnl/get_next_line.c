@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 15:58:16 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/04/27 14:41:53 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:25:13 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ char	*ft_get_new_line(char *stash)
 	char	*p_len;
 	int		break_pos;
 
-	p_len = ft_strchr(stash, '\n');
+	p_len = ft_strchr_gnl(stash, '\n');
 	break_pos = p_len - stash + 1;
-	line = ft_substr(stash, 0, break_pos);
+	line = ft_substr_gnl(stash, 0, break_pos);
 	if (!line)
 		return (NULL);
 	return (line);
@@ -32,7 +32,7 @@ char	*ft_clean_stash(char *stash)
 	char	*aux;
 	int		break_pos;
 
-	aux = ft_strchr(stash, '\n');
+	aux = ft_strchr_gnl(stash, '\n');
 	if (!aux)
 	{
 		clean_stash = NULL;
@@ -44,7 +44,7 @@ char	*ft_clean_stash(char *stash)
 	}
 	if (!stash[break_pos])
 		return (ft_free(&stash));
-	clean_stash = ft_substr(stash, break_pos, ft_strlen(stash) - break_pos);
+	clean_stash = ft_substr_gnl(stash, break_pos, ft_strlen(stash) - break_pos);
 	ft_free(&stash);
 	if (!clean_stash)
 		return (NULL);
@@ -61,13 +61,13 @@ char	*ft_read_line(int fd, char *stash)
 		return (ft_free(&stash));
 	buffer[0] = '\0';
 	bytes_read = 1;
-	while (!ft_strchr(buffer, '\n') && bytes_read > 0)
+	while (!ft_strchr_gnl(buffer, '\n') && bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read > 0)
 		{
 			buffer[bytes_read] = '\0';
-			stash = ft_strjoin(stash, buffer);
+			stash = ft_strjoin_gnl(stash, buffer);
 		}
 	}
 	free(buffer);
@@ -90,7 +90,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if ((stash && !ft_strchr(stash, '\n')) || !stash)
+	if ((stash && !ft_strchr_gnl(stash, '\n')) || !stash)
 		stash = ft_read_line(fd, stash);
 	if (!stash)
 		return (NULL);
@@ -100,5 +100,3 @@ char	*get_next_line(int fd)
 	stash = ft_clean_stash(stash);
 	return (line);
 }
-
-

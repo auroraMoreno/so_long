@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+         #
+#    By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/03 14:33:48 by aumoreno          #+#    #+#              #
-#    Updated: 2024/09/05 10:07:18 by aumoreno         ###   ########.fr        #
+#    Updated: 2024/09/16 11:36:18 by aumoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ EXEC = so_long
 CC = gcc
 CFLAGS = -Werror -Wextra
 
-SRCS = main.c mlx_general_utils.c map_utils.c
+SRCS = main.c mlx_general_utils.c map_utils.c rendering_utils.c gnl/get_next_line_utils.c gnl/get_next_line.c
 
 FT_PRINTF_PATH = ft_printf/
 LIBFT_PATH = libft/
@@ -49,8 +49,6 @@ fclean:  clean
 	rm -f $(OBJS)
 	@make -C $(FT_PRINTF_PATH) fclean --silent
 	@make -C $(LIBFT_PATH) fclean --silent
-
-
 
 re: fclean all
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:35:25 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/03 11:17:46 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:37:54 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
     // comprobamos que hay 2 args 
     if(argc != 2)
     {
-        ft_putendl_fd("Error\n",2);
+        ft_putendl_fd("Error no args\n",2);
         exit(EXIT_FAILURE);
     }
         

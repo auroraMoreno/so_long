@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 11:37:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/03/27 18:11:26 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:25:00 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char		*str;
 	size_t		i;
@@ -51,7 +51,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr_gnl(char *s, int c)
 {
 	int	i;
 
@@ -78,7 +78,7 @@ char	*ft_calloc(size_t nmemb, size_t size)
 	return (str);
 }
 
-char	*ft_substr(char *stash, unsigned int start, size_t len)
+char	*ft_substr_gnl(char *stash, unsigned int start, size_t len)
 {
 	char	*substr;
 	size_t	i;

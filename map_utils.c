@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/05 11:37:48 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/11 09:52:33 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h";
+#include "so_long.h"
 
 int ft_map_is_valid(char *joined_str)
 {
@@ -34,7 +34,7 @@ void ft_get_width(char  *joined_str, t_game *game)
     
     game->map_width = 0;
     i = 0;
-    while(joined_str[i])
+    while(joined_str[i] != '\0')
     {
         if(joined_str[i] != '\n')
             game->map_width++;
@@ -51,7 +51,7 @@ void ft_get_height(char *joined_str, t_game *game)
     //recorrer joined_str
     game->map_heigth = 0;
     i = 0;
-    while(joined_str[i])
+    while(joined_str[i] != '\0')
     {
         // si disinto de 1, 
         if(joined_str[i] == '\n')

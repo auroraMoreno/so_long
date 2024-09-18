@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 10:38:17 by aumoreno          #+#    #+#             */
-/*   Updated: 2023/06/24 11:49:36 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:35:30 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+// # include "gnl/get_next_line.h"
+// # include "gnl/get_next_line_bonus.h"
+
 
 int				ft_isalpha(int c);
 

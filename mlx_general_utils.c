@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_general_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/05 10:57:30 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:55:41 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //funcion para unir todo el mapa en una misma linea 
 // y asi sea más facil calcular el width y el height
 // maybe use it to parse too
-int ft_join_map_line(char *line, char **joined_str)
+static int ft_join_map_line(char *line, char **joined_str)
 {
     char *aux;
     aux = ft_strjoin(*joined_str,line);
@@ -28,31 +28,32 @@ int ft_join_map_line(char *line, char **joined_str)
         return (0);
     }
     //si todo va bien devolvemos 1 
-    free(joined_str);
+    free(*joined_str);
     free(line);
-    joined_str = aux;
+    *joined_str = aux;
     //si está vacía: 
     if(!*joined_str)
         return(0);
     return (1);
 }
 
-int ft_process_map_line(char *joined_str, t_game *game)
+static void ft_process_map_line(char *joined_str, t_game *game)
 {
+    printf("%s", joined_str);
     // hay que obtener el width and height primero 
     // porq lo vamos a usar en el map is valid 
     //calculate width and height
-    ft_get_height(joined_str);
-    ft_get_width(joined_str);
+    ft_get_height(joined_str, game);
+    ft_get_width(joined_str, game);
     
-    //check if map is valid
-    if(ft_map_is_valid() == 0)
-    {
-        free(joined_str);
-        free(game);
-        ft_putendl_fd("Map is not valid", 2);
-        exit(EXIT_FAILURE);
-    }
+    // //check if map is valid
+    // if(ft_map_is_valid() == 0)
+    // {
+    //     free(joined_str);
+    //     free(game);
+    //     ft_putendl_fd("Map is not valid", 2);
+    //     exit(EXIT_FAILURE);
+    // }
     
     // de momento returns int 1 si todo guay y 0 si algo va mal  
 }
@@ -75,7 +76,7 @@ void *ft_init_images(t_game *game)
 }
 
 
-void ft_init_map(t_game *game, void *file)
+void ft_init_map(t_game *game, char *file)
 {
     int fd;
     char *joined_str;
@@ -83,54 +84,34 @@ void ft_init_map(t_game *game, void *file)
     // primero open el fichero 
     fd = open(file, O_RDONLY);
     if(fd == -1)
-    {
-        // esto ponerlo en una función aparte 
-        free(game);
-        free(file);
-        ft_putendl_fd("Error\n",2);
-        exit(EXIT_FAILURE);
-    }
+        ft_free_game(game, "Error en fd");
     // luego tendremos que ir linea a linea 
     joined_str = ft_calloc(1, sizeof(char));
     if(!joined_str)
-    {
-        free(joined_str);
-        free(game);
-        ft_putendl_fd("Error\n",2);
-        exit(EXIT_FAILURE);
-    }
+        ft_free_game(game, "Error en calloc");
     //(podremos uusar el gnl i guess)
     line = get_next_line(fd);
     // si resulta que es un cuadrado, devolvemos error 
     while(line)
     {
         //join the line 
-        if(ft_join_map_line(line,joined_str) == 0)
-        {
-            free(game);
-            ft_putendl_fd("Error\n en init map",2);
-            exit(EXIT_FAILURE);
-        }
+        if(ft_join_map_line(line,&joined_str) == 0)
+            // SI RETURNS 0 ESQ ESTÁ MAL 
+            ft_free_game(game, "Error en el joinmapline");
         //update line
         line = get_next_line(fd);
     }
     close(fd);
     //process map: the function will get the line height and width
     //it will also check if the map is valid
-    if(ft_process_map_line(joined_str, game) == 0)
-    {
-        free(joined_str);
-        free(game);
-        ft_putendl_fd("Error\n",2);
-        exit(EXIT_FAILURE);
-    }
+    ft_process_map_line(joined_str, game);
     free(joined_str); //since we are using join inside the loop 
     
 }
 
 
 //inicializa el juego 
-t_game *ft_init_mlx(void **file)
+t_game *ft_init_mlx(char *file)
 {
     t_game  *game;
 
@@ -149,7 +130,7 @@ t_game *ft_init_mlx(void **file)
    game->mlx = mlx_init();
    game->mlx_win = mlx_new_window(game->mlx,750,600,"so_long_aurora");
     //inicializar el map (.ber) (initialize map)
-    ft_init_map(game,file);
+    ft_init_map(game,file); // ya tenemos el width y height
    /*
     inicializar las img
     de momento solo el suelo 

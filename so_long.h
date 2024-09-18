@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/05 11:35:10 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:44:22 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft/libft.h"
 #include "ft_printf/ft_printf.h"
 #include "gnl/get_next_line.h"
-# include <fcntl.h>
+// # include <fcntl.h>
 
 
 typedef struct s_img {
@@ -56,15 +56,20 @@ typedef struct s_game_data
 
 int ft_handle_key(int keycode, t_game *data);
 int ft_close_window(t_game *data);
-t_game *ft_init_mlx();
+t_game *ft_init_mlx(char *file);
 void *ft_init_images(t_game *game);
-void ft_init_map(t_game game, void *file);
+void ft_init_map(t_game *game, char *file);
 void ft_render_map(t_game *game);
-int ft_join_map_line(char **line, char **joined_str);
-int ft_process_map_line(char *joined_str);
-void ft_get_height(char *joined_str);
+int ft_join_map_line(char *line, char **joined_str);
+void ft_process_map_line(char *joined_str, t_game *game);
+void ft_get_height(char *joined_str, t_game *game);
 void ft_get_width(char  *joined_str, t_game *game);
 int ft_map_is_valid(char *joined_str);
+void ft_render_map(t_game *game);
+
+/*ERRORS AND FREEING MEM*/
+void ft_free_game(t_game *game, char *error);
+void ft_print_error(char *error)
 
 
 
