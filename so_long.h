@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/17 11:44:22 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:30:52 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_game_data
 {
     void *mlx;
     void *mlx_win; 
-    t_img floor;
+    t_img floor; // si hace falta, coger la estructura de mlx_int de t_img
     t_img wall; 
     // poner aqui el mapa 
     t_map map; 
@@ -64,13 +64,13 @@ int ft_join_map_line(char *line, char **joined_str);
 void ft_process_map_line(char *joined_str, t_game *game);
 void ft_get_height(char *joined_str, t_game *game);
 void ft_get_width(char  *joined_str, t_game *game);
-int ft_map_is_valid(char *joined_str);
+int ft_map_is_valid(t_game *game, char *joined_str);
 void ft_render_map(t_game *game);
+int ft_issurrounded(t_game *game, int i);
 
 /*ERRORS AND FREEING MEM*/
 void ft_free_game(t_game *game, char *error);
-void ft_print_error(char *error)
-
+void ft_print_error(char *error);
 
 
 // typedef struct s_img_data {

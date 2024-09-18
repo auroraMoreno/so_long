@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_general_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/17 11:55:41 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:53:37 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,17 @@ static int ft_join_map_line(char *line, char **joined_str)
 
 static void ft_process_map_line(char *joined_str, t_game *game)
 {
-    printf("%s", joined_str);
     // hay que obtener el width and height primero 
     // porq lo vamos a usar en el map is valid 
     //calculate width and height
-    ft_get_height(joined_str, game);
     ft_get_width(joined_str, game);
+    ft_get_height(joined_str, game);
     
-    // //check if map is valid
-    // if(ft_map_is_valid() == 0)
-    // {
-    //     free(joined_str);
-    //     free(game);
-    //     ft_putendl_fd("Map is not valid", 2);
-    //     exit(EXIT_FAILURE);
-    // }
+    //check if map is valid
+    if(ft_map_is_valid(game, joined_str) == 0)
+        ft_free_game(game, "El mapa no es válido");
     
+
     // de momento returns int 1 si todo guay y 0 si algo va mal  
 }
 
@@ -69,9 +64,7 @@ void *ft_init_images(t_game *game)
     path = "xpm/floor.xpm";
     img_ptr = mlx_xpm_file_to_image(game->mlx,path,&px,&px);
     if(!img_ptr)
-    {
         ft_putendl_fd("Error en el suelo",2);
-    }
     return img_ptr;
 }
 
