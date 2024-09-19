@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:06:42 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/09 12:23:17 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:22:39 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+
+/**
+ * metodo que dependiendo de si es una e,0,p o c 
+ * va a pintar una imagen u otra
+ */
+void ft_select_image(t_game *game, char pos, int x, int y)
+{
+    mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, x * 110, y * 110);
+
+    if(pos == 'P')
+        mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, x * 110, y * 110); 
+    else  if(pos == 'C')
+        mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectable.img_ptr, x * 110, y * 110);
+    else if(pos == 'E')
+        mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit.img_ptr, x * 110, y * 110);
+
+}
 
 void ft_render_map(t_game *game)
 {
@@ -20,16 +38,19 @@ void ft_render_map(t_game *game)
     //calcular el tamaño del mapa
     // para saber en base a eso cuantos suelos tenemos que pintar
     // hay que comprobar si el mapa es un cuadrado lanzar un error!! 
-    y = 0;
-    while(y <= game->map_heigth)
+    x = 0;
+    while(x <= game->map_width)
     {
-        x = 0;
-        while(x <= game->map_width)
+        y = 0;
+        while(y <= game->map_heigth)
         {
-            mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr,110,110);
-            x++;
+            if(game->map[x][y] == 1)
+                mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr,110,110);
+            else if(game->map[x][y] != 1)
+                ft_select_image(game, game->map[x][y], x, y); // hay que guardar las coordenadas jeje para saber donde pintar las cosas 
+            y++;
         }
-        y++;
+        x++;
     }
     
 }

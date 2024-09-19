@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:35:25 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/16 11:37:54 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:48:18 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ int main(int argc, char **argv)
         mlx y window
     */
    // le pasamos el fichero .ber 
-   game = ft_init_mlx(argv[1]);
-   
+   game = ft_init_game(argv[1]); // checks map, inits mlx and images, render
     // poner los hooks para cerrar ventana y tal 
     mlx_hook(game->mlx_win,17,1L<<17,ft_close_window,game);
     mlx_hook(game->mlx_win,3,1L<<1,ft_handle_key,game);

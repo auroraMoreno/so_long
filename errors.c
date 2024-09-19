@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:23:18 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/17 11:44:47 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:09:06 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void ft_free_game(t_game *game, char *error)
     if(game)
     {
         if(game->floor.img_ptr)
-            mlx_destroy_image(game->mlx, game->floor.img_ptr);
+            mlx_destroy_image(game->mlx, game->floor.img_ptr); 
         mlx_destroy_window(game->mlx, game->mlx_win);
         mlx_destroy_display(game->mlx);
         free(game->mlx);

@@ -6,7 +6,7 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/18 11:54:53 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:47:20 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static int ft_issurrounded(t_game *game, int i)
         || i % (game->map_width + 1) == 0 // para el borde de la izq
         || i % (game->map_width + 1) == game->map_width - 1 // para el borde de la derecha
     )
-        return (0);
+        return (1);
         
-    return (1);
+    return (0);
 }
 
 
@@ -81,7 +81,7 @@ int ft_map_is_valid(t_game *game, char *joined_str)
         i++;
         //comprobar si está rodeado de 1
         // si no está surrounded then devolvemos 0 si no 1
-        if(ft_issurrounded(game, i) == 0)
+        if(ft_issurrounded(game, i))
         {
             free(joined_str);
             ft_free_game(game,"El mapa esta mal rodeado");
@@ -98,19 +98,15 @@ int ft_map_is_valid(t_game *game, char *joined_str)
 // cambiar esto que en vez de void sea un int y asignarlo a map_width
 void ft_get_width(char  *joined_str, t_game *game)
 {
-    int i;
-    
+
     game->map_width = 0;
-    i = 0;
-    while(joined_str[i] != '\0')
-    {
-        if(joined_str[i] != '\n')
-            game->map_width++;
-        i++;
-    }
+    while(joined_str[game->map_width] && joined_str[game->map_width] != '\n')
+        game->map_width++;
     if(game->map_width == 0 || joined_str[game->map_width] == 0)
+    {
+        free(joined_str);
         ft_free_game(game, "Error en el cálculo del width"); // esto lo cambiaré a qe devuelva 0 
-    
+    }
 }
 
 // cambiar esto que en vez de void sea un int y asignarlo a map_height 
@@ -134,18 +130,19 @@ void ft_get_height(char *joined_str, t_game *game)
         //aqui ya ha llegado al final de la \n asi que podemos sumarle 1 al height
         // ya que solo ha entrado al bucle anterior si habia un char
         // igualmente habrá que checkar si el char leido es 1!!!! 
+        // literal this does't make sense i fear
         if(current_line_len > 0)
             game->map_heigth++;
         
         //comprobar si el current_line_len (q es width) es igual al width que hay marcado
         //will probably move this from here at some point but it is what it is for now
-        // si esto da error devolveré 0 pero for now we will just free mem
+        // si esto da error devolveré 0 pero for now we will just free mem 
+        printf("%d y %d", current_line_len, game->map_width);
         if(game->map_width != current_line_len)
             ft_free_game(game, "El width no coincide");
         // si disinto de 1, 
         if(joined_str[i] == '\n')
-            game->map_heigth++;
-        i++;
+            i++;
         
     }
 }

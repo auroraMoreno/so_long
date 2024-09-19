@@ -6,7 +6,7 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/18 11:53:37 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:22:22 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,15 @@ static void ft_process_map_line(char *joined_str, t_game *game)
     if(ft_map_is_valid(game, joined_str) == 0)
         ft_free_game(game, "El mapa no es válido");
     
-
+    //allocate memory for the map based on the map height
+    game->map = (int **)malloc(sizeof(int *) * game->map_heigth);
+	if(!game->map)
+	{
+		free(joined_str);
+		ft_free_game(game, "Error alloc de memoria");		
+	}
     // de momento returns int 1 si todo guay y 0 si algo va mal  
 }
-
-void *ft_init_images(t_game *game)
-{
-    //init the floor
-    char *path;
-    void *img_ptr;
-    int px;
-
-    px = 110;
-    path = "xpm/floor.xpm";
-    img_ptr = mlx_xpm_file_to_image(game->mlx,path,&px,&px);
-    if(!img_ptr)
-        ft_putendl_fd("Error en el suelo",2);
-    return img_ptr;
-}
-
 
 void ft_init_map(t_game *game, char *file)
 {
@@ -102,9 +92,51 @@ void ft_init_map(t_game *game, char *file)
     
 }
 
+// void *ft_init_images(t_game *game)
+// {
+//     //init the floor
+//     char *path;
+//     void *img_ptr;
+//     int px;
+
+//     px = 110;
+//     path = "xpm/floor.xpm";
+//     img_ptr = mlx_xpm_file_to_image(game->mlx,path,&px,&px);
+//     if(!img_ptr)
+//         ft_putendl_fd("Error en el suelo",2);
+//     return img_ptr;
+// }
+
+
+void *ft_set_images(t_game *game, char *img)
+{
+	char *path;
+	void *img_ptr;
+	int px; 
+	
+	path = ft_strjoin(XPM_PATH, img);
+	px = 110;
+	img_ptr =  mlx_xpm_file_to_image(game->mlx, path, &px, &px);
+	
+	if(!img_ptr)
+		ft_free_game(game, "Error en init images");
+	free(path);
+	return img_ptr;
+}
+
+void ft_init_images(t_game *game)
+{
+	game->floor.img_ptr = ft_set_images(game, FLOOR_XPM);
+	game->ghost.img_ptr = ft_set_images(game, GHOST_XPM); // add luego las demás perspectivas!!! 
+	game->wall.img_ptr = ft_set_images(game, WALL_XPM);
+	game->collectable.img_ptr = ft_set_images(game, COLLECTABLE_XPM);
+	game->enemy.img_ptr = ft_set_images(game, ENEMY_XPM);
+	game->exit.img_name = ft_set_images(game, EXIT_XPM);
+}
+
 
 //inicializa el juego 
-t_game *ft_init_mlx(char *file)
+t_game *ft_init_game(char *file)
 {
     t_game  *game;
 
@@ -120,17 +152,22 @@ t_game *ft_init_mlx(char *file)
         inicializar el mlx y la win
         no se si esto es necesario aqui
     */
+	ft_init_map(game,file); // ya tenemos el width y height
+	ft_init_images(game);
    game->mlx = mlx_init();
-   game->mlx_win = mlx_new_window(game->mlx,750,600,"so_long_aurora");
+   if(!game->mlx)
+		ft_free_game(game, "MLX mal instanciado");
+   game->mlx_win = mlx_new_window(game->mlx,game->map_width * 110,game->map_heigth * 110,"so_long_aurora");
+   if(!game->mlx_win)
+		ft_free_game(game, "MLX win mal instanciado");
     //inicializar el map (.ber) (initialize map)
-    ft_init_map(game,file); // ya tenemos el width y height
    /*
     inicializar las img
     de momento solo el suelo 
    */
-    game->floor.img_ptr = ft_init_images(game);
+    //game->floor.img_ptr = ft_init_images(game);
     //mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr,110,110);
-        
+    
     //renderizar la imagen en base al mapa .ber 
     /*
         de momento va a pintar solo el suelo pero luego pintará 

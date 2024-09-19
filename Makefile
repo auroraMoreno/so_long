@@ -3,19 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+         #
+#    By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/03 14:33:48 by aumoreno          #+#    #+#              #
-#    Updated: 2024/09/16 11:36:18 by aumoreno         ###   ########.fr        #
+#    Updated: 2024/09/19 11:16:05 by aumoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 EXEC = so_long
 
 CC = gcc
-CFLAGS = -Werror -Wextra
+CFLAGS = -Werror -Wextra -Wall -fsanitize=address,leak -g3
 
-SRCS = main.c mlx_general_utils.c map_utils.c rendering_utils.c gnl/get_next_line_utils.c gnl/get_next_line.c
+SRCS = main.c mlx_general_utils.c map_utils.c rendering_utils.c errors.c gnl/get_next_line_utils.c gnl/get_next_line.c
 
 FT_PRINTF_PATH = ft_printf/
 LIBFT_PATH = libft/
