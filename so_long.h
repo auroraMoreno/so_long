@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/19 11:07:09 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/25 00:33:54 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 #define COLLECTABLE_XPM "collectable.xpm"
 #define EXIT_XPM "exit.xpm"
 #define ENEMY_XPM "enemy.xpm"
-
-
 
 
 typedef struct s_img {
@@ -46,6 +44,7 @@ typedef struct  s_map
 {
     int x;
     int y;
+    char value;
     
 }t_map;
 
@@ -62,8 +61,9 @@ typedef struct s_game_data
     // poner aqui el mapa
     int   map_heigth;
     int   map_width;
-    int **map;
-    
+    //int **map;
+    int num_collect;  
+    t_map **map;
 }t_game;
 
 
@@ -85,7 +85,7 @@ void ft_render_map(t_game *game);
 /*ERRORS AND FREEING MEM*/
 void ft_free_game(t_game *game, char *error);
 void ft_print_error(char *error);
-
+void ft_innit_x_row(t_game *game);
 
 // typedef struct s_img_data {
 //     void *img_ptr;

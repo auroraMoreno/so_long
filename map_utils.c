@@ -3,51 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/19 11:47:20 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/25 00:39:16 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int ft_check_map_characters(t_game *game, char *joined_str)
+int ft_check_map_characters(t_game *game, char *joined_str, int p)
 {
     // too many vars probs
-    int i;
-    int innit_p;
-    int exit;
-    int coll;
-    int floor;
+    static int innit_p;
+    static int exit;
+    static int floor; //CHECKAR ESTO
     //si el int i tiene una E;P;C;1
-    i = 0; 
     innit_p = 0;
     exit = 0;
-    while(joined_str[i] != '\0')
-    {
-        if(joined_str[i] == '\n')
-            continue;
-        if(joined_str[i] != 'P' || joined_str[i] != 'E' || joined_str[i] != 'C' || joined_str[i] != '1')
-        {
-            free(joined_str);
-            ft_free_game(game, "Characteres inválidos");
-        }
-        if(joined_str[i] == 'P')
-            innit_p++;
-        if(joined_str[i] == 'E')
-            exit++;
-        if(joined_str[i] == 'C')
-            coll++;
-        if(joined_str[i] == '1')
-            floor++;
-        i++;
-    }
-    if(innit_p != 1 || exit != 1 || floor < 1 || coll < 1)
-    {
-        free(joined_str);
-        ft_free_game(game, "Invalid init position");
-    }
+    floor = 0;
+    //sustituir primer if por funcion a parte
+    // if(joined_str[p] != 'P' || joined_str[p] != 'E' || joined_str[p] != 'C' || joined_str[p] != '1' || joined_str[p] = '0')
+    //     return(0);
+    if(joined_str[p] == 'P')
+        innit_p++;
+    else if(joined_str[p] == 'E')
+        exit++;
+    else if(joined_str[p] == 'C')
+        game->num_collect++;
+    else if(joined_str[p] == '1')
+        floor++;
+    // if(innit_p != 1 || exit != 1)
+    //     return(0);
     // si hay un char que sea distinto de, free joined and game
     return(1);
 }
@@ -78,17 +65,28 @@ int ft_map_is_valid(t_game *game, char *joined_str)
         // si me encuentro con un \n sigo ???
         if(joined_str[i] == '\n')
             continue;
-        i++;
         //comprobar si está rodeado de 1
         // si no está surrounded then devolvemos 0 si no 1
         if(ft_issurrounded(game, i))
         {
-            free(joined_str);
-            ft_free_game(game,"El mapa esta mal rodeado");
-        }  
+            if(joined_str[i] != '1')
+            {
+                free(joined_str);
+                ft_free_game(game,"El mapa esta mal rodeado");
+            }
+        }
+        else
+        {
+            //comprobar que están todos los P,E,C,0 + no haya chars raros   
+            if(ft_check_map_characters(game, joined_str, i) == 0)
+            {
+                free(joined_str);
+                ft_free_game(game, "Error en map is valid");
+            }
+        }
+        
+            
     }
-    //comprobar que están todos los P,E,C,0 + no haya chars raros 
-    ft_check_map_characters(game, joined_str);
     // check tmb que no sea un rectangulo 
     if(game->map_heigth == game->map_width)
         return (0);
@@ -137,7 +135,6 @@ void ft_get_height(char *joined_str, t_game *game)
         //comprobar si el current_line_len (q es width) es igual al width que hay marcado
         //will probably move this from here at some point but it is what it is for now
         // si esto da error devolveré 0 pero for now we will just free mem 
-        printf("%d y %d", current_line_len, game->map_width);
         if(game->map_width != current_line_len)
             ft_free_game(game, "El width no coincide");
         // si disinto de 1, 

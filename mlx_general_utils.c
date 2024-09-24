@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_general_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/19 10:22:22 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/25 00:35:10 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,30 @@ static void ft_process_map_line(char *joined_str, t_game *game)
         ft_free_game(game, "El mapa no es válido");
     
     //allocate memory for the map based on the map height
-    game->map = (int **)malloc(sizeof(int *) * game->map_heigth);
+    game->map = malloc(sizeof(t_map *) * game->map_width);
 	if(!game->map)
 	{
 		free(joined_str);
 		ft_free_game(game, "Error alloc de memoria");		
 	}
-    // de momento returns int 1 si todo guay y 0 si algo va mal  
+    ft_innit_x_row(game);
 }
 
+void ft_innit_x_row(t_game *game)
+{
+    int i;
+
+    i = 0;
+    while(i < game->map_width)
+    {
+        game->map[i] = malloc(sizeof(t_map) * game->map_heigth + 1);
+        if(!game->map[i])
+            ft_free_game(game, "Error alloc x row");
+        i++;
+    }
+}
+
+// hacer método para init collectables y todo esooo
 void ft_init_map(t_game *game, char *file)
 {
     int fd;
@@ -153,13 +168,13 @@ t_game *ft_init_game(char *file)
         no se si esto es necesario aqui
     */
 	ft_init_map(game,file); // ya tenemos el width y height
-	ft_init_images(game);
    game->mlx = mlx_init();
    if(!game->mlx)
 		ft_free_game(game, "MLX mal instanciado");
    game->mlx_win = mlx_new_window(game->mlx,game->map_width * 110,game->map_heigth * 110,"so_long_aurora");
    if(!game->mlx_win)
 		ft_free_game(game, "MLX win mal instanciado");
+	ft_init_images(game);
     //inicializar el map (.ber) (initialize map)
    /*
     inicializar las img
