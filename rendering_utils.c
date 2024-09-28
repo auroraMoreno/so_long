@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:06:42 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/28 19:26:57 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/28 20:22:41 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
  * metodo que dependiendo de si es una e,0,p o c 
  * va a pintar una imagen u otra
  */
+// ARREGLAR QUE AQUI LA X DEBERIA SER EL ANCHO Y NO AL REVES!! 
 void ft_select_image(t_game *game, char pos, int x, int y)
 {
-    mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, x * 110, y * 110);
+    mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, y * 110, x * 110);
 
     if(pos == 'P')
-        mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, x * 110, y * 110); 
+        mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, y * 110, x * 110); 
     else  if(pos == 'C')
-        mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectable.img_ptr, x * 110, y * 110);
+        mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectable.img_ptr, y * 110, x * 110);
     else if(pos == 'E')
-        mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit.img_ptr, x * 110, y * 110);
+        mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit.img_ptr, y * 110, x * 110);
 
 }
 

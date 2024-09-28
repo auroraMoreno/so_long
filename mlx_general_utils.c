@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/28 19:20:07 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/28 20:12:03 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static void ft_process_map_line(char *joined_str, t_game *game)
     //calculate width and height
     ft_get_width(joined_str, game);
     ft_get_height(joined_str, game);
-    
+    printf("%d\n", game->map_width);
+    printf("%d\n", game->map_heigth);
     //check if map is valid
     if(ft_map_is_valid(game, joined_str) == 0)
         ft_free_game(game, "El mapa no es válido");
@@ -136,21 +137,6 @@ void ft_init_map(t_game *game, char *file)
     free(joined_str); //since we are using join inside the loop 
     
 }
-
-// void *ft_init_images(t_game *game)
-// {
-//     //init the floor
-//     char *path;
-//     void *img_ptr;
-//     int px;
-
-//     px = 110;
-//     path = "xpm/floor.xpm";
-//     img_ptr = mlx_xpm_file_to_image(game->mlx,path,&px,&px);
-//     if(!img_ptr)
-//         ft_putendl_fd("Error en el suelo",2);
-//     return img_ptr;
-// }
 
 
 void *ft_set_images(t_game *game, char *img)
