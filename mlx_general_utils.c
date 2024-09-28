@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/25 00:35:10 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:20:07 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,43 @@ static void ft_process_map_line(char *joined_str, t_game *game)
         ft_free_game(game, "El mapa no es válido");
     
     //allocate memory for the map based on the map height
-    game->map = malloc(sizeof(t_map *) * game->map_width);
+    game->map = malloc(sizeof(t_map *) * game->map_heigth);
 	if(!game->map)
 	{
 		free(joined_str);
 		ft_free_game(game, "Error alloc de memoria");		
 	}
     ft_innit_x_row(game);
+
+    //add otro metodo que sea fill x_row
+    ft_fill_x_row(game, joined_str);
+}
+
+void ft_fill_x_row(t_game *game, char *joined_str)
+{
+    int i;
+    int j;
+    int x;
+    
+    i = 0;
+    x = 0;
+    while(i < game->map_heigth)
+    {
+        j = 0;
+        while(j < game->map_width)
+        {
+            //set the coordinates
+            game->map[i][j].x= i;
+            game->map[i][j].y = j;
+            //set the value of given coordinate
+            game->map[i][j].value=joined_str[x];
+            j++;
+            x++;
+        }
+        i++;
+    }
+        
+    
 }
 
 void ft_innit_x_row(t_game *game)
@@ -64,9 +94,9 @@ void ft_innit_x_row(t_game *game)
     int i;
 
     i = 0;
-    while(i < game->map_width)
+    while(i < game->map_heigth)
     {
-        game->map[i] = malloc(sizeof(t_map) * game->map_heigth + 1);
+        game->map[i] = malloc(sizeof(t_map) * game->map_width);
         if(!game->map[i])
             ft_free_game(game, "Error alloc x row");
         i++;
@@ -146,7 +176,7 @@ void ft_init_images(t_game *game)
 	game->wall.img_ptr = ft_set_images(game, WALL_XPM);
 	game->collectable.img_ptr = ft_set_images(game, COLLECTABLE_XPM);
 	game->enemy.img_ptr = ft_set_images(game, ENEMY_XPM);
-	game->exit.img_name = ft_set_images(game, EXIT_XPM);
+	game->exit.img_ptr = ft_set_images(game, EXIT_XPM);
 }
 
 

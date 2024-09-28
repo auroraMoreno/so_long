@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:35:25 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/19 10:48:18 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:59:51 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,41 +58,3 @@ int main(int argc, char **argv)
     return (0);
    
 }
-
-
-
-// int main(int argc, char **argv)
-// {
-//     t_mlx_data *mlx_data;
-//     t_img *bg; 
-//     t_img_data *bg_data;
-    
-//     mlx_data = (t_mlx_data *)malloc(sizeof(t_mlx_data));
-//     if(!mlx_data)
-//         free(mlx_data);   
-//     bg = (t_img *)malloc(sizeof(t_img));
-//     if(!bg)
-//         free(bg);
-//     bg_data = (t_img_data *)malloc(sizeof(t_img_data));
-//     if(!bg_data)
-//         free(bg_data);
-    
-
-//     // vamos a empezar por que se nos abra la window
-//     mlx_data->mlx = mlx_init();
-//     mlx_data->mlx_win = mlx_new_window(mlx_data->mlx, 400, 300, "so_long");
-    
-//     // init img bg:
-//     bg->path = "xpm/floor.xpm";
-//     // pintar la imagen de fondo 
-//     bg_data->img_ptr = mlx_xpm_file_to_image(mlx_data->mlx,bg->path,&bg->width,&bg->height);
-//     bg_data->addr = mlx_get_data_addr(bg_data->img_ptr, &bg_data->bit_per_pixel, &bg_data->line_len, &bg_data->endian);
-    
-//     mlx_put_image_to_window(mlx_data->mlx_win, mlx_data->mlx, bg_data->img_ptr, 0 ,0);
-    
-//     // y vamos a poner y ya el hook de cerrar (luego lo movemos)
-// 	mlx_hook(mlx_data->mlx_win,17,1L<<17,ft_close_window,mlx_data);
-//     mlx_hook(mlx_data->mlx_win,3,1L<<1,ft_handle_key,mlx_data);
-//     mlx_loop(mlx_data->mlx);
-    
-// }

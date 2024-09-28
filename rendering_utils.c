@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:06:42 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/25 00:59:33 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:26:57 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  */
 void ft_select_image(t_game *game, char pos, int x, int y)
 {
-    //mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, x * 110, y * 110);
+    mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, x * 110, y * 110);
 
     if(pos == 'P')
         mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, x * 110, y * 110); 
@@ -32,26 +32,26 @@ void ft_select_image(t_game *game, char pos, int x, int y)
 
 void ft_render_map(t_game *game)
 {
-    int x; // la anchura
-    int y; // la altura
+    int x; // la altura
+    int y; // la anchura
 
     //calcular el tamaño del mapa
     // para saber en base a eso cuantos suelos tenemos que pintar
     // hay que comprobar si el mapa es un cuadrado lanzar un error!! 
     x = 0;
-    while(x < game->map_width)
+    while(x < game->map_heigth)
     {
         y = 0;
-        while(y < game->map_heigth)
+        while(y < game->map_width)
         {
             if(game->map[x][y].value == '1')
             {
                 printf("entro aqui 1");
-                mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr,(y * 110), (x * 110));
+                mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall.img_ptr,(y * 110), (x * 110));
             }
             else if(game->map[x][y].value != '1')
             {
-                printf("%d\n",game->map[x][y].value);
+                // printf("%d\n",game->map[x][y].value);
                 printf("entro aqui\n");
                 ft_select_image(game, game->map[x][y].value, x, y); // hay que guardar las coordenadas jeje para saber donde pintar las cosas 
             }
