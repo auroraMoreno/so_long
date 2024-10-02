@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_general_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/28 20:12:03 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:10:09 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void *ft_set_images(t_game *game, char *img)
 	int px; 
 	
 	path = ft_strjoin(XPM_PATH, img);
-	px = 110;
+	px = 90;
 	img_ptr =  mlx_xpm_file_to_image(game->mlx, path, &px, &px);
 	
 	if(!img_ptr)
@@ -187,7 +187,7 @@ t_game *ft_init_game(char *file)
    game->mlx = mlx_init();
    if(!game->mlx)
 		ft_free_game(game, "MLX mal instanciado");
-   game->mlx_win = mlx_new_window(game->mlx,game->map_width * 110,game->map_heigth * 110,"so_long_aurora");
+   game->mlx_win = mlx_new_window(game->mlx,game->map_width * 40,game->map_heigth * 40,"so_long_aurora");
    if(!game->mlx_win)
 		ft_free_game(game, "MLX win mal instanciado");
 	ft_init_images(game);

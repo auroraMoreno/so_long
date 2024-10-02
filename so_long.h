@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/26 18:07:33 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:31:26 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_game_data
 
 
 
-int ft_handle_key(int keycode, t_game *data);
+int ft_on_keypress(int keycode, t_game *data);
 int ft_close_window(t_game *data);
 t_game *ft_init_game(char *file);
 void ft_init_images(t_game *game);
@@ -87,6 +87,8 @@ void ft_free_game(t_game *game, char *error);
 void ft_print_error(char *error);
 void ft_innit_x_row(t_game *game);
 void ft_fill_x_row(t_game *game, char *str_joined);
+int ft_handle_key(int keycode);
+
 
 // typedef struct s_img_data {
 //     void *img_ptr;
