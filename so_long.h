@@ -6,7 +6,7 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/02 09:31:26 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/03 09:06:20 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,19 @@ int ft_map_is_valid(t_game *game, char *joined_str);
 void ft_render_map(t_game *game);
 // static int ft_issurrounded(t_game *game, int i);
 
+/*CHARACTER MOVEMENTS*/
+void ft_move_up(t_game *game);
+void ft_move_down();
+void ft_move_left();
+void ft_move_right();
+
+
 /*ERRORS AND FREEING MEM*/
 void ft_free_game(t_game *game, char *error);
 void ft_print_error(char *error);
 void ft_innit_x_row(t_game *game);
 void ft_fill_x_row(t_game *game, char *str_joined);
-int ft_handle_key(int keycode);
-
+int ft_handle_key(int keycode, t_game *game);
 
 // typedef struct s_img_data {
 //     void *img_ptr;

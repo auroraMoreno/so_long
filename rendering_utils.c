@@ -6,7 +6,7 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:06:42 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/02 08:09:45 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:13:14 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,15 @@
 void ft_select_image(t_game *game, char pos, int x, int y)
 {
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, y * 40, x * 40);
-
     if(pos == 'P')
+    {
+        //esto habra que moverlo de sitio
+        //inicializamos al ghost con sus coordenadas iniciales
+        // esto nos permite que luego en move cogemos su pos y sumamos 
+        game->ghost.x_pos = x;
+        game->ghost.y_pos = y; // tengo que coger el indice y moverlo al siguiente ??? 
         mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, y * 40, x * 40); 
+    }
     else  if(pos == 'C')
         mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectable.img_ptr, y * 40, x * 40);
     else if(pos == 'E')
