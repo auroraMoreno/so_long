@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:06:42 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/03 11:13:14 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:01:28 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void ft_select_image(t_game *game, char pos, int x, int y)
         //esto habra que moverlo de sitio
         //inicializamos al ghost con sus coordenadas iniciales
         // esto nos permite que luego en move cogemos su pos y sumamos 
-        game->ghost.x_pos = x;
-        game->ghost.y_pos = y; // tengo que coger el indice y moverlo al siguiente ??? 
+        game->ghost.x_pos = y;
+        game->ghost.y_pos = x; // tengo que coger el indice y moverlo al siguiente ??? 
         mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, y * 40, x * 40); 
     }
     else  if(pos == 'C')

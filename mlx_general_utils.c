@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_general_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/02 08:10:09 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:10:14 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void *ft_set_images(t_game *game, char *img)
 	int px; 
 	
 	path = ft_strjoin(XPM_PATH, img);
-	px = 90;
+	px = 40;
 	img_ptr =  mlx_xpm_file_to_image(game->mlx, path, &px, &px);
 	
 	if(!img_ptr)
