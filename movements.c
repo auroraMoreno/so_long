@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 08:16:33 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/04 11:16:54 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/04 12:20:50 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,26 @@
     //vamos a pasarle a la funcion el siguiente char 
     // y con el value vamos a ver qué es, 
 */
-// void ft_vaidate_move(t_game *game)
-// {
+//REPASAR ESTA FUNCION PARA ADD ERORRES Y DEMAS 
+void ft_validate_move(t_game *game, int x, int y)
+{
+    if(game->map[x][y].value == '1')
+        printf("u are hitting a wall");
+    else if(game->map[x][y].value == 'E')
+    {
+        // si collectables es == 0 good to go   
+        if(game->num_collect == 0)
+            // ft_end_game(); // EXIT SUCCESS
+            printf("YAY!! u can leaveee");
+        else
+            printf("no tienes todos los collectables u cant leave");
+    }
+    else if(game->map[x][y].value == 'C') //IMPORTANTE TMB CAMBIAR LA IMG A SUELO !!!
+        game->num_collect--; // 
     
-// }
+    // SI ES UN 0 GOOD TO GO so no need of like doing anything
+    
+}
 
 //RECORDAR QUE AQUI X = LA ALTURA E Y LA ANCHURA ESTÁ MAL!!!!!
 void ft_move_up(t_game *game)
@@ -39,9 +55,14 @@ void ft_move_up(t_game *game)
     printf("%d\n",game->ghost.y_pos);
     printf("%d\n",game->ghost.x_pos);
 
-    //
-
-    mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, (game->ghost.x_pos * 40), (game->ghost.y_pos * 40) + 40);
+    //comprobamos el siguiente char antes de hacer nada 
+    //en este caso como es para subir hay que pasar el char de arriba
+    // es decir la x se queda igual pero la y cambia
+    ft_validate_move(game,game->ghost.x_pos, game->ghost.y_pos - 1);  
+    // modificamos el alrededor, la posicion del fantasma 
+    // y luego renderizamos de nuevo el mapa 
+    game->ghost.y_pos -= 1;
+    mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, (game->ghost.x_pos * 40), (game->ghost.y_pos * 40));
     printf("moving up");
 }
 
