@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/04 11:45:01 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:49:05 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void ft_render_map(t_game *game);
 
 /*CHARACTER MOVEMENTS*/
 void ft_move_up(t_game *game);
-void ft_move_down();
-void ft_move_left();
-void ft_move_right();
+void ft_move_down(t_game *game);
+void ft_move_left(t_game *game);
+void ft_move_right(t_game *game);
 void ft_validate_move(t_game *game, int x, int y);
 
 
