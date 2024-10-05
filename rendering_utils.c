@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:06:42 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/05 11:57:34 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:32:22 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 // ARREGLAR QUE AQUI LA X DEBERIA SER EL ANCHO Y NO AL REVES!! 
 void ft_select_image(t_game *game, char pos, int x, int y)
 {
-    printf("%c", pos);
     //mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, y * 40, x * 40);
     if(pos == 'P')
     {
@@ -55,13 +54,10 @@ void ft_render_map(t_game *game)
         {
             if(game->map[x][y].value == '1')
             {
-                printf("entro aqui 1\n");
                 mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall.img_ptr,(y * 40), (x * 40));
             }
             else if(game->map[x][y].value != '1')
             {
-                // printf("%d\n",game->map[x][y].value);
-                printf("entro aqui\n");
                 ft_select_image(game, game->map[x][y].value, x, y); // hay que guardar las coordenadas jeje para saber donde pintar las cosas 
             }
             y++;

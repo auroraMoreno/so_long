@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 08:16:33 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/05 11:26:05 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:21:02 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@
 //REPASAR ESTA FUNCION PARA ADD ERORRES Y DEMAS 
 void ft_validate_move(t_game *game, int x, int y)
 {
-    if(game->map[x][y].value == '1')
-        printf("u are hitting a wall");
-    else if(game->map[x][y].value == 'E')
+    if(game->map[y][x].value == '1')
+        printf("u are hitting a wall\n");
+    else if(game->map[y][x].value == 'E')
     {
         // si collectables es == 0 good to go   
         if(game->num_collect == 0)
             // ft_end_game(); // EXIT SUCCESS
-            printf("YAY!! u can leaveee");
+            printf("YAY!! u can leaveee\n");
         else
-            printf("no tienes todos los collectables u cant leave");
+            printf("no tienes todos los collectables u cant leave\n");
     }
-    else if(game->map[x][y].value == 'C') //IMPORTANTE TMB CAMBIAR LA IMG A SUELO !!!
+    else if(game->map[y][x].value == 'C') //IMPORTANTE TMB CAMBIAR LA IMG A SUELO !!!
         game->num_collect--; // 
     
     // SI ES UN 0 GOOD TO GO so no need of like doing anything
@@ -69,9 +69,9 @@ void ft_move_up(t_game *game)
     // donde estaba antes el fantasma ponemos el suelo
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, (game->ghost.x_pos * 40), (old_y_pos * 40));
     // en el mapa hay que actualizar tmb: HABRÁ QUE HACEER LO MISMO PARA COLECTABLES 
-    game->map[game->ghost.x_pos][old_y_pos].value = '0';
-    game->map[game->ghost.x_pos][game->ghost.y_pos].value = 'P';
-    printf("moving up"); //ADD THE STEPS COUNTER!! 
+    game->map[old_y_pos][game->ghost.x_pos].value = '0';
+    game->map[game->ghost.y_pos][game->ghost.x_pos].value = 'P';
+    printf("moving up\n"); //ADD THE STEPS COUNTER!! 
 }
 
 void ft_move_down(t_game *game)
@@ -94,9 +94,9 @@ void ft_move_down(t_game *game)
     // donde estaba antes el fantasma ponemos el suelo
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, (game->ghost.x_pos * 40), (old_y_pos * 40));
     // en el mapa hay que actualizar tmb: HABRÁ QUE HACEER LO MISMO PARA COLECTABLES 
-    game->map[game->ghost.x_pos][old_y_pos].value = '0';
-    game->map[game->ghost.x_pos][game->ghost.y_pos].value = 'P';
-    printf("moving down");
+    game->map[old_y_pos][game->ghost.x_pos].value = '0';
+    game->map[game->ghost.y_pos][game->ghost.x_pos].value = 'P';
+    printf("moving down\n");
 }
 
 // a 
@@ -110,7 +110,7 @@ void ft_move_left(t_game *game)
     //comprobamos el siguiente char antes de hacer nada 
     //en este caso como es para subir hay que pasar el char de arriba
     // es decir la x se queda igual pero la y cambia
-    ft_validate_move(game,game->ghost.x_pos, game->ghost.x_pos - 1);  
+    ft_validate_move(game,game->ghost.x_pos - 1, game->ghost.y_pos);  
     // modificamos el alrededor, la posicion del fantasma 
     // y luego renderizamos de nuevo el mapa 
     old_x_pos = game->ghost.x_pos;
@@ -120,12 +120,14 @@ void ft_move_left(t_game *game)
     // donde estaba antes el fantasma ponemos el suelo
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, (old_x_pos * 40), (game->ghost.y_pos * 40));
     // en el mapa hay que actualizar tmb: HABRÁ QUE HACEER LO MISMO PARA COLECTABLES 
-    game->map[old_x_pos][game->ghost.y_pos].value = '0'; // donde estaba antes el fantasma ahora hay suelo
-    game->map[game->ghost.x_pos][game->ghost.y_pos].value = 'P'; // donde antes habia suelo ahora fantasma
-    printf("moving left");
+    game->map[game->ghost.y_pos][old_x_pos].value = '0'; // donde estaba antes el fantasma ahora hay suelo
+    game->map[game->ghost.y_pos][game->ghost.x_pos].value = 'P'; // donde antes habia suelo ahora fantasma
+    printf("moving right");
 }
 
 // d
+// la x aqui representa al eje y (cambiarlo)
+// y la y al eje x 
 void ft_move_right(t_game *game)
 {
     int old_x_pos; 
@@ -136,7 +138,7 @@ void ft_move_right(t_game *game)
     //comprobamos el siguiente char antes de hacer nada 
     //en este caso como es para subir hay que pasar el char de arriba
     // es decir la x se queda igual pero la y cambia
-    ft_validate_move(game,game->ghost.x_pos, game->ghost.x_pos + 1);  
+    ft_validate_move(game,game->ghost.x_pos + 1, game->ghost.y_pos);  
     // modificamos el alrededor, la posicion del fantasma 
     // y luego renderizamos de nuevo el mapa 
     old_x_pos = game->ghost.x_pos;
@@ -149,7 +151,7 @@ void ft_move_right(t_game *game)
     printf("%d\n",game->ghost.y_pos);
     printf("%d\n",game->ghost.x_pos);
     // en el mapa hay que actualizar tmb: HABRÁ QUE HACEER LO MISMO PARA COLECTABLES 
-    game->map[old_x_pos][game->ghost.y_pos].value = '0'; // donde estaba antes el fantasma ahora hay suelo
-    game->map[game->ghost.x_pos][game->ghost.y_pos].value = 'P'; // donde antes habia suelo ahora fantasma
-    printf("moving left");
+    game->map[game->ghost.y_pos][old_x_pos].value = '0'; // donde estaba antes el fantasma ahora hay suelo
+    game->map[game->ghost.y_pos][game->ghost.x_pos].value = 'P'; // donde antes habia suelo ahora fantasma
+    printf("moving right\n");
 }
