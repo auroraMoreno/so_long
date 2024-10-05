@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/05 12:24:44 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:43:55 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void ft_process_map_line(char *joined_str, t_game *game)
     //calculate width and height
     ft_get_width(joined_str, game);
     ft_get_height(joined_str, game);
-    printf("%d\n", game->map_width);
-    printf("%d\n", game->map_heigth);
+    // printf("%d\n", game->map_width);
+    // printf("%d\n", game->map_heigth);
     //check if map is valid
     if(ft_map_is_valid(game, joined_str) == 0)
         ft_free_game(game, "El mapa no es válido");
@@ -136,8 +136,6 @@ void ft_init_map(t_game *game, char *file)
         line = get_next_line(fd);
     }
     close(fd);
-    printf("Printing joined:\n");
-    printf("%s\n",joined_str);
     //process map: the function will get the line height and width
     //it will also check if the map is valid
     ft_process_map_line(joined_str, game);
@@ -198,6 +196,11 @@ t_game *ft_init_game(char *file)
    if(!game->mlx_win)
 		ft_free_game(game, "MLX win mal instanciado");
 	ft_init_images(game);
+
+    // inicializamos el step counter, aunq no sé si esto deberia ir aqui
+    // hacer una funcion donde inicialice mejor los props? 
+    game->steps_counter = 0;
+    
     //inicializar el map (.ber) (initialize map)
    /*
     inicializar las img

@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/04 13:49:05 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:32:20 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ typedef struct s_game_data
     int   map_heigth;
     int   map_width;
     //int **map;
-    int num_collect;  
+    int num_collect; // numero de collectables
+    int steps_counter;  
     t_map **map;
 }t_game;
 

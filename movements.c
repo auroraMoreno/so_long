@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 08:16:33 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/05 13:21:02 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:45:51 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void ft_move_up(t_game *game)
 {
     int old_y_pos; 
     //solo toco la y 
-    printf("%d\n",game->ghost.y_pos);
-    printf("%d\n",game->ghost.x_pos);
+    // printf("%d\n",game->ghost.y_pos);
+    // printf("%d\n",game->ghost.x_pos);
 
     //comprobamos el siguiente char antes de hacer nada 
     //en este caso como es para subir hay que pasar el char de arriba
@@ -71,15 +71,16 @@ void ft_move_up(t_game *game)
     // en el mapa hay que actualizar tmb: HABRÁ QUE HACEER LO MISMO PARA COLECTABLES 
     game->map[old_y_pos][game->ghost.x_pos].value = '0';
     game->map[game->ghost.y_pos][game->ghost.x_pos].value = 'P';
-    printf("moving up\n"); //ADD THE STEPS COUNTER!! 
+    game->steps_counter++;
+    printf("Steps: %d\n",game->steps_counter); 
 }
 
 void ft_move_down(t_game *game)
 {
     int old_y_pos; 
     //solo toco la y 
-    printf("%d\n",game->ghost.y_pos);
-    printf("%d\n",game->ghost.x_pos);
+    // printf("%d\n",game->ghost.y_pos);
+    // printf("%d\n",game->ghost.x_pos);
 
     //comprobamos el siguiente char antes de hacer nada 
     //en este caso como es para subir hay que pasar el char de arriba
@@ -96,7 +97,8 @@ void ft_move_down(t_game *game)
     // en el mapa hay que actualizar tmb: HABRÁ QUE HACEER LO MISMO PARA COLECTABLES 
     game->map[old_y_pos][game->ghost.x_pos].value = '0';
     game->map[game->ghost.y_pos][game->ghost.x_pos].value = 'P';
-    printf("moving down\n");
+    game->steps_counter++;
+    printf("Steps: %d\n",game->steps_counter); 
 }
 
 // a 
@@ -104,8 +106,8 @@ void ft_move_left(t_game *game)
 {
     int old_x_pos; 
     //solo toco la y 
-    printf("%d\n",game->ghost.y_pos);
-    printf("%d\n",game->ghost.x_pos);
+    // printf("%d\n",game->ghost.y_pos);
+    // printf("%d\n",game->ghost.x_pos);
 
     //comprobamos el siguiente char antes de hacer nada 
     //en este caso como es para subir hay que pasar el char de arriba
@@ -122,7 +124,8 @@ void ft_move_left(t_game *game)
     // en el mapa hay que actualizar tmb: HABRÁ QUE HACEER LO MISMO PARA COLECTABLES 
     game->map[game->ghost.y_pos][old_x_pos].value = '0'; // donde estaba antes el fantasma ahora hay suelo
     game->map[game->ghost.y_pos][game->ghost.x_pos].value = 'P'; // donde antes habia suelo ahora fantasma
-    printf("moving right");
+    game->steps_counter++;
+    printf("Steps: %d\n",game->steps_counter); 
 }
 
 // d
@@ -132,8 +135,8 @@ void ft_move_right(t_game *game)
 {
     int old_x_pos; 
     //solo toco la y 
-    printf("%d\n",game->ghost.y_pos);
-    printf("%d\n",game->ghost.x_pos);
+    // printf("%d\n",game->ghost.y_pos);
+    // printf("%d\n",game->ghost.x_pos);
 
     //comprobamos el siguiente char antes de hacer nada 
     //en este caso como es para subir hay que pasar el char de arriba
@@ -147,11 +150,12 @@ void ft_move_right(t_game *game)
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, (game->ghost.x_pos * 40), (game->ghost.y_pos * 40));
     // donde estaba antes el fantasma ponemos el suelo
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, (old_x_pos * 40), (game->ghost.y_pos * 40));
-    printf("printing new pos\n");
-    printf("%d\n",game->ghost.y_pos);
-    printf("%d\n",game->ghost.x_pos);
+    // printf("printing new pos\n");
+    // printf("%d\n",game->ghost.y_pos);
+    // printf("%d\n",game->ghost.x_pos);
     // en el mapa hay que actualizar tmb: HABRÁ QUE HACEER LO MISMO PARA COLECTABLES 
     game->map[game->ghost.y_pos][old_x_pos].value = '0'; // donde estaba antes el fantasma ahora hay suelo
     game->map[game->ghost.y_pos][game->ghost.x_pos].value = 'P'; // donde antes habia suelo ahora fantasma
-    printf("moving right\n");
+    game->steps_counter++;
+    printf("Steps: %d\n",game->steps_counter); 
 }
