@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/04 11:10:14 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:58:36 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ void ft_fill_x_row(t_game *game, char *joined_str)
         j = 0;
         while(j < game->map_width)
         {
+            if(joined_str[x] == '\n')
+            {
+                x++;
+                continue;
+            }
             //set the coordinates
             game->map[i][j].x= i;
             game->map[i][j].y = j;
@@ -131,6 +136,8 @@ void ft_init_map(t_game *game, char *file)
         line = get_next_line(fd);
     }
     close(fd);
+    printf("Printing joined:\n");
+    printf("%s\n",joined_str);
     //process map: the function will get the line height and width
     //it will also check if the map is valid
     ft_process_map_line(joined_str, game);

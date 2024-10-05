@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 08:16:33 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/04 13:49:24 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/05 11:26:05 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,9 @@ void ft_move_right(t_game *game)
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, (game->ghost.x_pos * 40), (game->ghost.y_pos * 40));
     // donde estaba antes el fantasma ponemos el suelo
     mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, (old_x_pos * 40), (game->ghost.y_pos * 40));
+    printf("printing new pos\n");
+    printf("%d\n",game->ghost.y_pos);
+    printf("%d\n",game->ghost.x_pos);
     // en el mapa hay que actualizar tmb: HABRÁ QUE HACEER LO MISMO PARA COLECTABLES 
     game->map[old_x_pos][game->ghost.y_pos].value = '0'; // donde estaba antes el fantasma ahora hay suelo
     game->map[game->ghost.x_pos][game->ghost.y_pos].value = 'P'; // donde antes habia suelo ahora fantasma
