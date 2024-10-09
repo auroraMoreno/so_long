@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:23:18 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/05 18:57:05 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:56:10 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "so_long.h"
 
 // ARREGLAR ESTE MÉTODO PARA QUE SEA MÁS ABSTRACTO!!!
+// QUE SE PUEDA USAR TANTO SI GANO COMO SI PIERDO!! 
 void ft_free_game(t_game *game, char *msg)
 {
     //add destroy image for the rest of images
@@ -34,10 +35,29 @@ void ft_free_game(t_game *game, char *msg)
 
 void ft_end_game(t_game *game)
 {
+    int i;
     if(game)
     {
+        if(game->ghost.img_ptr)
+            mlx_destroy_image(game->mlx, game->ghost.img_ptr); 
+        if(game->collectable.img_ptr)
+            mlx_destroy_image(game->mlx, game->collectable.img_ptr); 
         if(game->floor.img_ptr)
             mlx_destroy_image(game->mlx, game->floor.img_ptr); 
+        if(game->wall.img_ptr)
+            mlx_destroy_image(game->mlx, game->wall.img_ptr); 
+        if(game->enemy.img_ptr)
+            mlx_destroy_image(game->mlx, game->enemy.img_ptr); 
+        if(game->exit.img_ptr)
+            mlx_destroy_image(game->mlx, game->exit.img_ptr);
+
+        i = 0; 
+        while(i < game->map_heigth)
+        {
+            free(game->map[i]);
+            i++;
+        }
+        free(game->map);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
         mlx_destroy_window(game->mlx, game->mlx_win);
         mlx_destroy_display(game->mlx);
         free(game->mlx);

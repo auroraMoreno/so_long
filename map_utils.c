@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/25 00:39:16 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:07:28 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int ft_check_map_characters(t_game *game, char *joined_str, int p)
     innit_p = 0;
     exit = 0;
     floor = 0;
+    //TENGO QUE INICIALIZAR TODOS LOS PROPS DEL JUEGO!!! 
     //sustituir primer if por funcion a parte
     // if(joined_str[p] != 'P' || joined_str[p] != 'E' || joined_str[p] != 'C' || joined_str[p] != '1' || joined_str[p] = '0')
     //     return(0);
@@ -36,6 +37,7 @@ int ft_check_map_characters(t_game *game, char *joined_str, int p)
     // if(innit_p != 1 || exit != 1)
     //     return(0);
     // si hay un char que sea distinto de, free joined and game
+    printf("%d", game->num_collect);
     return(1);
 }
     

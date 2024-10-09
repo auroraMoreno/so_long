@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/05 13:43:55 by aumoreno         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:10:41 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ t_game *ft_init_game(char *file)
         inicializar el mlx y la win
         no se si esto es necesario aqui
     */
+   game->num_collect = 0;
 	ft_init_map(game,file); // ya tenemos el width y height
    game->mlx = mlx_init();
    if(!game->mlx)
@@ -199,6 +200,7 @@ t_game *ft_init_game(char *file)
 
     // inicializamos el step counter, aunq no sé si esto deberia ir aqui
     // hacer una funcion donde inicialice mejor los props? 
+ 
     game->steps_counter = 0;
     
     //inicializar el map (.ber) (initialize map)
