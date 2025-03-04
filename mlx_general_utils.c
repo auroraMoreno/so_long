@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/08 12:10:41 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/04 10:02:04 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,11 +148,15 @@ void *ft_set_images(t_game *game, char *img)
 {
 	char *path;
 	void *img_ptr;
-	int px; 
+	//int px; 
 	
 	path = ft_strjoin(XPM_PATH, img);
-	px = 40;
-	img_ptr =  mlx_xpm_file_to_image(game->mlx, path, &px, &px);
+    // if(ft_strncmp(img, WALL_XPM, ft_strlen(WALL_XPM)) == 0)
+    //     px = 32;
+    // else{
+    //     px = 64; 
+    // }
+	img_ptr =  mlx_xpm_file_to_image(game->mlx, path, &game->ghost.width, &game->ghost.height);
 	
 	if(!img_ptr)
 		ft_free_game(game, "Error en init images");
@@ -166,7 +170,7 @@ void ft_init_images(t_game *game)
 	game->ghost.img_ptr = ft_set_images(game, GHOST_XPM); // add luego las demás perspectivas!!! 
 	game->wall.img_ptr = ft_set_images(game, WALL_XPM);
 	game->collectable.img_ptr = ft_set_images(game, COLLECTABLE_XPM);
-	game->enemy.img_ptr = ft_set_images(game, ENEMY_XPM);
+	//game->enemy.img_ptr = ft_set_images(game, ENEMY_XPM);
 	game->exit.img_ptr = ft_set_images(game, EXIT_XPM);
 }
 
@@ -193,7 +197,7 @@ t_game *ft_init_game(char *file)
    game->mlx = mlx_init();
    if(!game->mlx)
 		ft_free_game(game, "MLX mal instanciado");
-   game->mlx_win = mlx_new_window(game->mlx,game->map_width * 40,game->map_heigth * 40,"so_long_aurora");
+   game->mlx_win = mlx_new_window(game->mlx,game->map_width * 64,game->map_heigth * 64,"so_long_aurora");
    if(!game->mlx_win)
 		ft_free_game(game, "MLX win mal instanciado");
 	ft_init_images(game);

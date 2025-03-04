@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 08:16:33 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/09 11:34:12 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/04 10:02:35 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int ft_validate_move(t_game *game, int x, int y)
         if(game->num_collect == 0)
         {
            //ft_change_value(game, game->ghost.x_pos, game->ghost.y_pos);            
-           //ft_end_game(game); // EXIT SUCCESS
+           ft_end_game(game); // EXIT SUCCESS
             //printf("YAY!! u can leaveee\n"); // win game
             return (1);
         }
@@ -72,9 +72,9 @@ void ft_change_value(t_game *game, int old_x, int old_y)
         printf("soy un collectable");
         //mlx_destroy_image(game->mlx, game->collectable.img_ptr);
     }
-    mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, (game->ghost.x_pos * 40), (game->ghost.y_pos * 40));
+    mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, (game->ghost.x_pos * 64), (game->ghost.y_pos * 64));
     // donde estaba antes el fantasma ponemos el suelo: 
-    mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, (old_x * 40), (old_y * 40));
+    mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, (old_x * 64), (old_y * 64));
     game->map[old_y][old_x].value = '0'; 
     game->map[game->ghost.y_pos][old_x].value = 'P';
 }

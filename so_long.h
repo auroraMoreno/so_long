@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/08 11:35:52 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:31:12 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 // # include <fcntl.h>
 
 #define XPM_PATH "xpm/"
-#define GHOST_XPM "ghost.xpm"
-#define FLOOR_XPM "floor.xpm"
-#define WALL_XPM "building.xpm"
-#define COLLECTABLE_XPM "collectable.xpm"
-#define EXIT_XPM "exit.xpm"
+#define GHOST_XPM "shinchan_pegado.xpm"
+#define FLOOR_XPM "floor2.xpm"
+#define WALL_XPM "himawari.xpm"
+#define COLLECTABLE_XPM "galletita.xpm"
+#define EXIT_XPM "puerta_closed.xpm"
 #define ENEMY_XPM "enemy.xpm"
 
 
