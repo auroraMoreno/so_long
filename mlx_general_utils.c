@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_general_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/04 10:02:04 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:31:45 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ t_game *ft_init_game(char *file)
 	ft_init_images(game);
 
     // inicializamos el step counter, aunq no sé si esto deberia ir aqui
-    // hacer una funcion donde inicialice mejor los props? 
+    /*hacer una funcion donde inicialice mejor los props? */
  
     game->steps_counter = 0;
     

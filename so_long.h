@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/04 17:31:12 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:13:23 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define XPM_PATH "xpm/"
 #define GHOST_XPM "shinchan_pegado.xpm"
 #define FLOOR_XPM "floor2.xpm"
-#define WALL_XPM "himawari.xpm"
+#define WALL_XPM "wall_bus.xpm"
 #define COLLECTABLE_XPM "galletita.xpm"
 #define EXIT_XPM "puerta_closed.xpm"
 #define ENEMY_XPM "enemy.xpm"
