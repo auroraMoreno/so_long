@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:23:18 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/09 10:56:10 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:49:43 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void ft_end_game(t_game *game)
             mlx_destroy_image(game->mlx, game->floor.img_ptr); 
         if(game->wall.img_ptr)
             mlx_destroy_image(game->mlx, game->wall.img_ptr); 
-        if(game->enemy.img_ptr)
-            mlx_destroy_image(game->mlx, game->enemy.img_ptr); 
         if(game->exit.img_ptr)
             mlx_destroy_image(game->mlx, game->exit.img_ptr);
 

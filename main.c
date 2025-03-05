@@ -6,7 +6,7 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:35:25 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/03 09:04:49 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:53:54 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int ft_on_keypress(int keycode, t_game *data)
         ft_close_window(data);
     else
         ft_handle_key(keycode, data);
-    // else  if  es distinta del espacio hacer un método a parte que gestione
     return (0);
 }
 
@@ -56,16 +55,21 @@ int main(int argc, char **argv)
     // comprobamos que hay 2 args 
     if(argc != 2)
     {
-        ft_putendl_fd("Error no args\n",2);
+        ft_putendl_fd("Error no args.",2);
         exit(EXIT_FAILURE);
     }
         
+    //printf("%d\n", ft_is_ber(argv[1]));
     // comprobar que es .ber 
-
-    /*inicializamos game
-        mlx y window
+    if(!ft_is_ber(argv[1]))
+    {
+        ft_putendl_fd("Invalid file.", 2);
+        exit(EXIT_FAILURE);
+    }
+    /*
+        inicializamos game, mlx y window
+        le pasamos el fichero .ber 
     */
-   // le pasamos el fichero .ber 
    game = ft_init_game(argv[1]); // checks map, inits mlx and images, render
     // poner los hooks para cerrar ventana y tal 
     mlx_hook(game->mlx_win,17,1L<<17,ft_close_window,game);

@@ -6,11 +6,46 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/05 10:31:45 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:52:58 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int ft_is_ber(char *str)
+{
+    //recorrer str 
+    int i = 0;
+
+    while(str[i])
+        i++;
+    
+    // puedo usar el suubstr para coger hasta el . 
+    i--;
+    while(str[i] != '.' && str[i])
+        i--;
+    //si i es 0 return (0);
+    if(i <= 0)
+        return(0);
+    // la estructura tiene que ser: nombre_fichero.ber, teniendo en cunenta que puede tener guiones y chars especiales
+     
+    //empezando desde el final, mientras sea != . rotamos 
+    // si nnunnca lllega a ser  != . entonnces returnn 0 porq esta mal
+
+    // si si llega al punto vamos a partir con substr desde donde está el punto hasta el final 
+    char *sub_str = ft_substr(str,i,5);
+    //y ahi con strncpm si .ber entonces guay, si no F 
+    if(ft_strncmp(sub_str, ".ber", 5) == 0)
+    {
+        //printf("entro");
+        free(sub_str);
+        return (1);
+    }
+    free(sub_str);
+    // esto es indeppendiente de si el mapa es válido o no, puede ser un .ber y que luegoo el mapa esté mal 
+    return (0);
+}
+
 
 //funcion para unir todo el mapa en una misma linea 
 // y asi sea más facil calcular el width y el height

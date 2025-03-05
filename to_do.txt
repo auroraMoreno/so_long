@@ -1,0 +1,6 @@
+cambiar el nombre de ghost a character 
+hacer comprobacion de que el fichero es .ber 
+comprobar que hago la comprobacion de q hay un camino válido bc i fear que no lo hago
+reordenar los métodos y los ficheros
+
+arreglar que nno puedo usar mi prinft (si hace falta lo quitamos)

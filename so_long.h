@@ -6,7 +6,7 @@
 /*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/05 10:13:23 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:35:03 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void ft_end_game(t_game *game);
 void ft_innit_x_row(t_game *game);
 void ft_fill_x_row(t_game *game, char *str_joined);
 int ft_handle_key(int keycode, t_game *game);
+int ft_is_ber(char *str);
 
 // typedef struct s_img_data {
 //     void *img_ptr;
