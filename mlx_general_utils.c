@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/06 10:32:12 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/06 10:59:41 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void ft_init_map(t_game *game, char *file)
     }
     close(fd);
     //process map: the function will get the line height and width
-    //it will also check if the map is valid
+    /*MAP CHECKS IN FUNCTION BELOW*/
     ft_process_map_line(joined_str, game);
     free(joined_str); //since we are using join inside the loop 
     

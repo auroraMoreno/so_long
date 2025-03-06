@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/06 09:22:04 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:38:44 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int ft_check_map_characters(t_game *game, char *joined_str, int p)
     //sustituir primer if por funcion a parte
     // if(joined_str[p] != 'P' || joined_str[p] != 'E' || joined_str[p] != 'C' || joined_str[p] != '1' || joined_str[p] = '0')
     //     return(0);
+    // aqui esto está ma porq hay que comprobar si has mas de una P, E 
     if(joined_str[p] == 'P')
         innit_p++;
     else if(joined_str[p] == 'E')
@@ -68,12 +69,16 @@ int ft_map_is_valid(t_game *game, char *joined_str)
             continue;
         //comprobar si está rodeado de 1
         // si no está surrounded then devolvemos 0 si no 1
+        /*CHECK IF MAP IS A RECTANGLE */
         if(ft_issurrounded(game, i))
         {
             if(joined_str[i] != '1')
             {
                 free(joined_str);
-                ft_free_game(game,"El mapa esta mal rodeado");
+                //ft_free_game(game,"El mapa esta mal rodeado");
+                free(game);
+                ft_putendl_fd("Error\nMap must be fully surrounded by walls.", 2);
+                exit(EXIT_FAILURE);
             }
         }
         else
