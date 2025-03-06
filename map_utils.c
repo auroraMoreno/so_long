@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/10/08 12:07:28 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/06 09:22:04 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int ft_check_map_characters(t_game *game, char *joined_str, int p)
     // if(innit_p != 1 || exit != 1)
     //     return(0);
     // si hay un char que sea distinto de, free joined and game
-    printf("%d", game->num_collect);
     return(1);
 }
     

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_general_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/05 14:52:58 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/06 10:32:12 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int ft_is_ber(char *str)
 {
     //recorrer str 
     int i = 0;
+
+    
 
     while(str[i])
         i++;
@@ -152,8 +154,13 @@ void ft_init_map(t_game *game, char *file)
     char *line; 
     // primero open el fichero 
     fd = open(file, O_RDONLY);
-    if(fd == -1)
-        ft_free_game(game, "Error en fd");
+    if(fd == -1){
+         // el problema esq libero memoria pero aun no hice innit ni nada
+        //ft_free_game(game, "Invalid file.\n");
+        free(game);
+        ft_putendl_fd("File not found.", 2);
+        exit(EXIT_FAILURE);
+    }
     // luego tendremos que ir linea a linea 
     joined_str = ft_calloc(1, sizeof(char));
     if(!joined_str)
@@ -186,11 +193,6 @@ void *ft_set_images(t_game *game, char *img)
 	//int px; 
 	
 	path = ft_strjoin(XPM_PATH, img);
-    // if(ft_strncmp(img, WALL_XPM, ft_strlen(WALL_XPM)) == 0)
-    //     px = 32;
-    // else{
-    //     px = 64; 
-    // }
 	img_ptr =  mlx_xpm_file_to_image(game->mlx, path, &game->ghost.width, &game->ghost.height);
 	
 	if(!img_ptr)
@@ -228,7 +230,7 @@ t_game *ft_init_game(char *file)
         no se si esto es necesario aqui
     */
    game->num_collect = 0;
-	ft_init_map(game,file); // ya tenemos el width y height
+   ft_init_map(game,file); // ya tenemos el width y height
    game->mlx = mlx_init();
    if(!game->mlx)
 		ft_free_game(game, "MLX mal instanciado");

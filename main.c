@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:35:25 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/05 14:53:54 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/06 09:30:02 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int main(int argc, char **argv)
         ft_putendl_fd("Invalid file.", 2);
         exit(EXIT_FAILURE);
     }
+    //checkar si el fichero .ber existe en maps lo hacemos cuando open pero hay que hacer los frees si no existe 
+    
     /*
         inicializamos game, mlx y window
         le pasamos el fichero .ber 

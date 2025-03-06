@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+         #
+#    By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/03 14:33:48 by aumoreno          #+#    #+#              #
-#    Updated: 2024/10/03 08:22:48 by aumoreno         ###   ########.fr        #
+#    Updated: 2025/03/06 10:35:01 by aumoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

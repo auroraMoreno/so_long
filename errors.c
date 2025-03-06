@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:23:18 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/05 10:49:43 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/06 10:27:13 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,28 @@ void ft_free_game(t_game *game, char *msg)
     {
         if(game->floor.img_ptr)
             mlx_destroy_image(game->mlx, game->floor.img_ptr); 
+        if(game->ghost.img_ptr)
+            mlx_destroy_image(game->mlx, game->ghost.img_ptr);
+        if(game->wall.img_ptr)
+            mlx_destroy_image(game->mlx, game->wall.img_ptr);
+        if(game->collectable.img_name)
+            mlx_destroy_image(game->mlx, game->collectable.img_ptr);
+        if(game->exit.img_name)
+            mlx_destroy_image(game->mlx, game->exit.img_ptr);
+
         mlx_destroy_window(game->mlx, game->mlx_win);
         mlx_destroy_display(game->mlx);
         free(game->mlx);
         free(game);
         ft_print_error(msg);
+        
     }
 }
 
 void ft_end_game(t_game *game)
 {
     int i;
+    printf("fin.\n");
     if(game)
     {
         if(game->ghost.img_ptr)
