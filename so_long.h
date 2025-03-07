@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumoreno <aumoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/05 12:35:03 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:17:17 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ typedef struct  s_map
     
 }t_map;
 
+
+typedef struct t_item_counter
+{
+    int n_player;
+    int n_exits;
+    int n_floor;    
+}t_item_counter;
+
+
 typedef struct s_game_data
 {
     void *mlx;
@@ -65,7 +74,9 @@ typedef struct s_game_data
     int num_collect; // numero de collectables
     int steps_counter;  
     t_map **map;
+    t_item_counter counter;
 }t_game;
+
 
 
 

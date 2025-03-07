@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/06 11:38:44 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:38:50 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,37 @@
 int ft_check_map_characters(t_game *game, char *joined_str, int p)
 {
     // too many vars probs
-    static int innit_p;
-    static int exit;
-    static int floor; //CHECKAR ESTO
+    // static int innit_p;
+    // static int exit;
+    //static int floor; //CHECKAR ESTO
+    static int walls;
     //si el int i tiene una E;P;C;1
-    innit_p = 0;
-    exit = 0;
-    floor = 0;
+    //innit_p = 0;
+    // exit = 0;
+
+    //floor = 0;
     //TENGO QUE INICIALIZAR TODOS LOS PROPS DEL JUEGO!!! 
     //sustituir primer if por funcion a parte
     // if(joined_str[p] != 'P' || joined_str[p] != 'E' || joined_str[p] != 'C' || joined_str[p] != '1' || joined_str[p] = '0')
     //     return(0);
     // aqui esto está ma porq hay que comprobar si has mas de una P, E 
+    //printf("%d\n", innit_p);
     if(joined_str[p] == 'P')
-        innit_p++;
+    {
+        /*innit_p++;
+            if(innit_p > 1)
+                return (0); 
+        */
+        game->counter.n_player++;
+    }
     else if(joined_str[p] == 'E')
-        exit++;
+        game->counter.n_exits++;
     else if(joined_str[p] == 'C')
         game->num_collect++;
+    else if(joined_str[p] == '0')
+        game->counter.n_floor++;
     else if(joined_str[p] == '1')
-        floor++;
+        walls++;
     // if(innit_p != 1 || exit != 1)
     //     return(0);
     // si hay un char que sea distinto de, free joined and game
@@ -80,19 +91,56 @@ int ft_map_is_valid(t_game *game, char *joined_str)
                 ft_putendl_fd("Error\nMap must be fully surrounded by walls.", 2);
                 exit(EXIT_FAILURE);
             }
-        }
-        else
-        {
-            //comprobar que están todos los P,E,C,0 + no haya chars raros   
-            if(ft_check_map_characters(game, joined_str, i) == 0)
-            {
-                free(joined_str);
-                ft_free_game(game, "Error en map is valid");
-            }
-        }
-        
-            
+        }        
+        // //comprobar que están todos los P,E,C,0 + no haya chars raros   
+        // if(ft_check_map_characters(game, joined_str, i) == 0)
+        // {
+        //     free(joined_str);
+        //     free(game);
+        //     ft_putendl_fd("Error\nMap with wrong props.", 2); //quizas cambiar esto a que check map chars no return nada
+        //     // y haga todo esto pero en check map or something 
+        //     exit(EXIT_FAILURE);
+        //     //ft_free_game(game, "Error en map is valid");
+        // }
+
+        ft_check_map_characters(game, joined_str, i);
     }
+
+    //add here : || !ft_valid_route(game)
+    if(game->counter.n_floor == 0)
+    {
+        free(joined_str);
+        free(game);
+        ft_putendl_fd("Error\nNo valid route.", 2); //quizas cambiar esto a que check map chars no return nada
+        //y haga todo esto pero en check map or something 
+        exit(EXIT_FAILURE); 
+    }
+
+    if(game->counter.n_player > 1 || game->counter.n_player == 0)
+    {
+        free(joined_str);
+        free(game);
+        ft_putendl_fd("Error\nMap with wrong props.", 2); //quizas cambiar esto a que check map chars no return nada
+        //y haga todo esto pero en check map or something 
+        exit(EXIT_FAILURE);
+    }   
+    if(game->counter.n_exits > 1 || game->counter.n_exits == 0)
+    {
+        free(joined_str);
+        free(game);
+        ft_putendl_fd("Error\nMap with wrong props.", 2); //quizas cambiar esto a que check map chars no return nada
+        //y haga todo esto pero en check map or something 
+        exit(EXIT_FAILURE);
+    }     
+    if(game->num_collect == 0)
+    {
+        free(joined_str);
+        free(game);
+        ft_putendl_fd("Error\nMap with wrong props.", 2); //quizas cambiar esto a que check map chars no return nada
+        //y haga todo esto pero en check map or something 
+        exit(EXIT_FAILURE);   
+    }
+    
     // check tmb que no sea un rectangulo 
     if(game->map_heigth == game->map_width)
         return (0);
@@ -109,7 +157,11 @@ void ft_get_width(char  *joined_str, t_game *game)
     if(game->map_width == 0 || joined_str[game->map_width] == 0)
     {
         free(joined_str);
-        ft_free_game(game, "Error en el cálculo del width"); // esto lo cambiaré a qe devuelva 0 
+        free(game);
+        ft_putendl_fd("Error\nThe .ber file is empty.", 2); //quizas cambiar esto a que check map chars no return nada
+        //y haga todo esto pero en check map or something 
+        exit(EXIT_FAILURE);  
+        //ft_free_game(game, "Error en el cálculo del width"); // esto lo cambiaré a qe devuelva 0 
     }
 }
 
@@ -142,7 +194,13 @@ void ft_get_height(char *joined_str, t_game *game)
         //will probably move this from here at some point but it is what it is for now
         // si esto da error devolveré 0 pero for now we will just free mem 
         if(game->map_width != current_line_len)
-            ft_free_game(game, "El width no coincide");
+        {
+            //ft_free_game(game, "El width no coincide");
+            free(joined_str);
+            free(game);
+            ft_putendl_fd("Error.\nMap is not a rectangle.", 2);
+            exit(EXIT_FAILURE);
+        } 
         // si disinto de 1, 
         if(joined_str[i] == '\n')
             i++;

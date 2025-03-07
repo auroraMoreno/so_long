@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/06 10:59:41 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:22:17 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,9 @@ t_game *ft_init_game(char *file)
         no se si esto es necesario aqui
     */
    game->num_collect = 0;
+   game->counter.n_exits = 0;
+   game->counter.n_player = 0;
+   game->counter.n_floor = 0;
    ft_init_map(game,file); // ya tenemos el width y height
    game->mlx = mlx_init();
    if(!game->mlx)
