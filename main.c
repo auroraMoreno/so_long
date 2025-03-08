@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:35:25 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/06 09:30:02 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:31:44 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,14 @@ int main(int argc, char **argv)
 {
     t_game  *game;
     
-    // comprobamos que hay 2 args 
+    /*Argument Check*/
     if(argc != 2)
-    {
-        ft_putendl_fd("Error no args.",2);
-        exit(EXIT_FAILURE);
-    }
-        
-    //printf("%d\n", ft_is_ber(argv[1]));
-    // comprobar que es .ber 
+        ft_print_error("Error\nIncorrect arguments.");
+    /*checks for .ber file*/
     if(!ft_is_ber(argv[1]))
-    {
-        ft_putendl_fd("Invalid file.", 2);
-        exit(EXIT_FAILURE);
-    }
-    //checkar si el fichero .ber existe en maps lo hacemos cuando open pero hay que hacer los frees si no existe 
-    
-    /*
-        inicializamos game, mlx y window
-        le pasamos el fichero .ber 
-    */
+        ft_print_error("Error\nInvalid file.");
+
+    /*initialize game*/
    game = ft_init_game(argv[1]); // checks map, inits mlx and images, render
     // poner los hooks para cerrar ventana y tal 
     mlx_hook(game->mlx_win,17,1L<<17,ft_close_window,game);

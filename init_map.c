@@ -6,48 +6,11 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/07 11:22:17 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:55:44 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int ft_is_ber(char *str)
-{
-    //recorrer str 
-    int i = 0;
-
-    
-
-    while(str[i])
-        i++;
-    
-    // puedo usar el suubstr para coger hasta el . 
-    i--;
-    while(str[i] != '.' && str[i])
-        i--;
-    //si i es 0 return (0);
-    if(i <= 0)
-        return(0);
-    // la estructura tiene que ser: nombre_fichero.ber, teniendo en cunenta que puede tener guiones y chars especiales
-     
-    //empezando desde el final, mientras sea != . rotamos 
-    // si nnunnca lllega a ser  != . entonnces returnn 0 porq esta mal
-
-    // si si llega al punto vamos a partir con substr desde donde está el punto hasta el final 
-    char *sub_str = ft_substr(str,i,5);
-    //y ahi con strncpm si .ber entonces guay, si no F 
-    if(ft_strncmp(sub_str, ".ber", 5) == 0)
-    {
-        //printf("entro");
-        free(sub_str);
-        return (1);
-    }
-    free(sub_str);
-    // esto es indeppendiente de si el mapa es válido o no, puede ser un .ber y que luegoo el mapa esté mal 
-    return (0);
-}
-
 
 //funcion para unir todo el mapa en una misma linea 
 // y asi sea más facil calcular el width y el height
@@ -83,7 +46,7 @@ static void ft_process_map_line(char *joined_str, t_game *game)
     ft_get_height(joined_str, game);
     // printf("%d\n", game->map_width);
     // printf("%d\n", game->map_heigth);
-    //check if map is valid
+    //check if map is valid QUITAR QUE AQUI DEVULVA UN INT, SI FALLA EL METODO HACE EXIT
     if(ft_map_is_valid(game, joined_str) == 0)
         ft_free_game(game, "El mapa no es válido");
     
@@ -98,6 +61,8 @@ static void ft_process_map_line(char *joined_str, t_game *game)
 
     //add otro metodo que sea fill x_row
     ft_fill_x_row(game, joined_str);
+
+    // AQUI ADD EL VALID ROUTE
 }
 
 void ft_fill_x_row(t_game *game, char *joined_str)
@@ -186,84 +151,5 @@ void ft_init_map(t_game *game, char *file)
 }
 
 
-void *ft_set_images(t_game *game, char *img)
-{
-	char *path;
-	void *img_ptr;
-	//int px; 
-	
-	path = ft_strjoin(XPM_PATH, img);
-	img_ptr =  mlx_xpm_file_to_image(game->mlx, path, &game->ghost.width, &game->ghost.height);
-	
-	if(!img_ptr)
-		ft_free_game(game, "Error en init images");
-	free(path);
-	return img_ptr;
-}
-
-void ft_init_images(t_game *game)
-{
-	game->floor.img_ptr = ft_set_images(game, FLOOR_XPM);
-	game->ghost.img_ptr = ft_set_images(game, GHOST_XPM); // add luego las demás perspectivas!!! 
-	game->wall.img_ptr = ft_set_images(game, WALL_XPM);
-	game->collectable.img_ptr = ft_set_images(game, COLLECTABLE_XPM);
-	//game->enemy.img_ptr = ft_set_images(game, ENEMY_XPM);
-	game->exit.img_ptr = ft_set_images(game, EXIT_XPM);
-}
 
 
-//inicializa el juego 
-t_game *ft_init_game(char *file)
-{
-    t_game  *game;
-
-    //hacemos  malloc
-    game = (t_game *)malloc(sizeof(t_game));
-    //comprobar que ha hecho el alloc
-    if(!game)
-    {
-        free(game);
-        exit(EXIT_FAILURE); //REVISAR**
-    }
-    /*
-        inicializar el mlx y la win
-        no se si esto es necesario aqui
-    */
-   game->num_collect = 0;
-   game->counter.n_exits = 0;
-   game->counter.n_player = 0;
-   game->counter.n_floor = 0;
-   ft_init_map(game,file); // ya tenemos el width y height
-   game->mlx = mlx_init();
-   if(!game->mlx)
-		ft_free_game(game, "MLX mal instanciado");
-   game->mlx_win = mlx_new_window(game->mlx,game->map_width * 64,game->map_heigth * 64,"so_long_aurora");
-   if(!game->mlx_win)
-		ft_free_game(game, "MLX win mal instanciado");
-	ft_init_images(game);
-
-    // inicializamos el step counter, aunq no sé si esto deberia ir aqui
-    /*hacer una funcion donde inicialice mejor los props? */
- 
-    game->steps_counter = 0;
-    
-    //inicializar el map (.ber) (initialize map)
-   /*
-    inicializar las img
-    de momento solo el suelo 
-   */
-    //game->floor.img_ptr = ft_init_images(game);
-    //mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr,110,110);
-    
-    //renderizar la imagen en base al mapa .ber 
-    /*
-        de momento va a pintar solo el suelo pero luego pintará 
-        los collectables y demás
-    */
-   //AQUI SOLO PINTA EL MAPA
-    ft_render_map(game); 
-
-    // devolver el new game
-    return (game);
-     
-}

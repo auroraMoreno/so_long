@@ -6,146 +6,70 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/07 11:38:50 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:56:53 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int ft_check_map_characters(t_game *game, char *joined_str, int p)
-{
-    // too many vars probs
-    // static int innit_p;
-    // static int exit;
-    //static int floor; //CHECKAR ESTO
-    static int walls;
-    //si el int i tiene una E;P;C;1
-    //innit_p = 0;
-    // exit = 0;
 
-    //floor = 0;
-    //TENGO QUE INICIALIZAR TODOS LOS PROPS DEL JUEGO!!! 
-    //sustituir primer if por funcion a parte
-    // if(joined_str[p] != 'P' || joined_str[p] != 'E' || joined_str[p] != 'C' || joined_str[p] != '1' || joined_str[p] = '0')
-    //     return(0);
-    // aqui esto está ma porq hay que comprobar si has mas de una P, E 
-    //printf("%d\n", innit_p);
-    if(joined_str[p] == 'P')
+/**
+ * metodo que dependiendo de si es una e,0,p o c 
+ * va a pintar una imagen u otra
+ */
+// ARREGLAR QUE AQUI LA X DEBERIA SER EL ANCHO Y NO AL REVES!! 
+void ft_select_image(t_game *game, char pos, int x, int y)
+{
+    //mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr, y * 40, x * 40);
+    if(pos == 'P')
     {
-        /*innit_p++;
-            if(innit_p > 1)
-                return (0); 
-        */
-        game->counter.n_player++;
+        //esto habra que moverlo de sitio
+        //inicializamos al ghost con sus coordenadas iniciales
+        // esto nos permite que luego en move cogemos su pos y sumamos 
+        game->ghost.x_pos = y;
+        game->ghost.y_pos = x; // tengo que coger el indice y moverlo al siguiente ??? 
+        mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr, y * 64, x * 64); 
     }
-    else if(joined_str[p] == 'E')
-        game->counter.n_exits++;
-    else if(joined_str[p] == 'C')
-        game->num_collect++;
-    else if(joined_str[p] == '0')
-        game->counter.n_floor++;
-    else if(joined_str[p] == '1')
-        walls++;
-    // if(innit_p != 1 || exit != 1)
-    //     return(0);
-    // si hay un char que sea distinto de, free joined and game
-    return(1);
-}
-    
-
-static int ft_issurrounded(t_game *game, int i)
-{
-    if(i < game->map_width
-        || i > (game->map_heigth - 1) * (game->map_width + 1) // para la ultima linea
-        || i % (game->map_width + 1) == 0 // para el borde de la izq
-        || i % (game->map_width + 1) == game->map_width - 1 // para el borde de la derecha
-    )
-        return (1);
-        
-    return (0);
+    else  if(pos == 'C')
+        mlx_put_image_to_window(game->mlx, game->mlx_win, game->collectable.img_ptr, y * 64, x * 64);
+    else if(pos == 'E')
+        mlx_put_image_to_window(game->mlx, game->mlx_win, game->exit.img_ptr, y * 64, x * 64);
+    else if(pos == '1')
+         mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall.img_ptr, y * 64, x * 64);
 }
 
-
-int ft_map_is_valid(t_game *game, char *joined_str)
+void ft_render_map(t_game *game)
 {
-    int i;
-    // si hay algo que no sea un 1 rodeando
-    // si hay algun char invalido 
-    // when getting the width and height check if it's a rectangle 
-    i = -1; //empezar en -1 por \n 
-    while(joined_str[++i] != 0)
+    int x; // la altura
+    int y; // la anchura
+
+    //calcular el tamaño del mapa
+    // para saber en base a eso cuantos suelos tenemos que pintar
+    // hay que comprobar si el mapa es un cuadrado lanzar un error!! 
+    x = 0;
+    while(x < game->map_heigth)
     {
-        // si me encuentro con un \n sigo ???
-        if(joined_str[i] == '\n')
-            continue;
-        //comprobar si está rodeado de 1
-        // si no está surrounded then devolvemos 0 si no 1
-        /*CHECK IF MAP IS A RECTANGLE */
-        if(ft_issurrounded(game, i))
+        y = 0;
+        while(y < game->map_width)
         {
-            if(joined_str[i] != '1')
-            {
-                free(joined_str);
-                //ft_free_game(game,"El mapa esta mal rodeado");
-                free(game);
-                ft_putendl_fd("Error\nMap must be fully surrounded by walls.", 2);
-                exit(EXIT_FAILURE);
-            }
-        }        
-        // //comprobar que están todos los P,E,C,0 + no haya chars raros   
-        // if(ft_check_map_characters(game, joined_str, i) == 0)
-        // {
-        //     free(joined_str);
-        //     free(game);
-        //     ft_putendl_fd("Error\nMap with wrong props.", 2); //quizas cambiar esto a que check map chars no return nada
-        //     // y haga todo esto pero en check map or something 
-        //     exit(EXIT_FAILURE);
-        //     //ft_free_game(game, "Error en map is valid");
-        // }
-
-        ft_check_map_characters(game, joined_str, i);
-    }
-
-    //add here : || !ft_valid_route(game)
-    if(game->counter.n_floor == 0)
-    {
-        free(joined_str);
-        free(game);
-        ft_putendl_fd("Error\nNo valid route.", 2); //quizas cambiar esto a que check map chars no return nada
-        //y haga todo esto pero en check map or something 
-        exit(EXIT_FAILURE); 
-    }
-
-    if(game->counter.n_player > 1 || game->counter.n_player == 0)
-    {
-        free(joined_str);
-        free(game);
-        ft_putendl_fd("Error\nMap with wrong props.", 2); //quizas cambiar esto a que check map chars no return nada
-        //y haga todo esto pero en check map or something 
-        exit(EXIT_FAILURE);
-    }   
-    if(game->counter.n_exits > 1 || game->counter.n_exits == 0)
-    {
-        free(joined_str);
-        free(game);
-        ft_putendl_fd("Error\nMap with wrong props.", 2); //quizas cambiar esto a que check map chars no return nada
-        //y haga todo esto pero en check map or something 
-        exit(EXIT_FAILURE);
-    }     
-    if(game->num_collect == 0)
-    {
-        free(joined_str);
-        free(game);
-        ft_putendl_fd("Error\nMap with wrong props.", 2); //quizas cambiar esto a que check map chars no return nada
-        //y haga todo esto pero en check map or something 
-        exit(EXIT_FAILURE);   
+            mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr,(y * 64), (x * 64));
+            ft_select_image(game, game->map[x][y].value, x, y);
+            // if(game->map[x][y].value == '1')
+            // {
+            //     mlx_put_image_to_window(game->mlx, game->mlx_win, game->wall.img_ptr,(y * 64), (x * 64)); // ***
+            // }
+            // else if(game->map[x][y].value != '1')
+            // {
+            //     ft_select_image(game, game->map[x][y].value, x, y); // hay que guardar las coordenadas jeje para saber donde pintar las cosas 
+            // }
+            y++;
+        }
+        x++;
     }
     
-    // check tmb que no sea un rectangulo 
-    if(game->map_heigth == game->map_width)
-        return (0);
-    return(1);
 }
+
+
 
 // cambiar esto que en vez de void sea un int y asignarlo a map_width
 void ft_get_width(char  *joined_str, t_game *game)
