@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/07 11:17:17 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/20 11:18:13 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ void ft_get_height(char *joined_str, t_game *game);
 void ft_get_width(char  *joined_str, t_game *game);
 int ft_map_is_valid(t_game *game, char *joined_str);
 void ft_render_map(t_game *game);
+/*MAP CHECKS */
+void ft_valid_route(t_game *game);
+void ft_flood_fill(char **map_copy, int x, int y, int map_width, int map_height);
+char **ft_map_copy(t_map **map, int map_width, int map_height);
 // static int ft_issurrounded(t_game *game, int i);
 
 /*CHARACTER MOVEMENTS*/

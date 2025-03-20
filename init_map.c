@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_general_utils.c                                :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/08 13:55:44 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:05:08 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static void ft_process_map_line(char *joined_str, t_game *game)
     ft_fill_x_row(game, joined_str);
 
     // AQUI ADD EL VALID ROUTE
+    ft_valid_route(game);
 }
 
 void ft_fill_x_row(t_game *game, char *joined_str)

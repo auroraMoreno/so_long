@@ -6,7 +6,7 @@
 #    By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/03 14:33:48 by aumoreno          #+#    #+#              #
-#    Updated: 2025/03/08 13:57:09 by aumoreno         ###   ########.fr        #
+#    Updated: 2025/03/20 11:19:10 by aumoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ EXEC = so_long
 CC = gcc
 CFLAGS = -Werror -Wextra -Wall -fsanitize=address,leak -g3
 
-SRCS = main.c checks.c init_game.c init_map.c map_utils.c errors.c movements.c gnl/get_next_line_utils.c gnl/get_next_line.c
+SRCS = main.c valid_path_check.c checks.c init_game.c init_map.c map_utils.c errors.c movements.c gnl/get_next_line_utils.c gnl/get_next_line.c
 
 FT_PRINTF_PATH = ft_printf/
 LIBFT_PATH = libft/

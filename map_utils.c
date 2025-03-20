@@ -6,12 +6,11 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/08 13:56:53 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:02:29 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 /**
  * metodo que dependiendo de si es una e,0,p o c 
@@ -68,8 +67,6 @@ void ft_render_map(t_game *game)
     }
     
 }
-
-
 
 // cambiar esto que en vez de void sea un int y asignarlo a map_width
 void ft_get_width(char  *joined_str, t_game *game)
