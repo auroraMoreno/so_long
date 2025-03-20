@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/08 14:02:29 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:41:14 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,5 @@ void ft_get_height(char *joined_str, t_game *game)
             i++;
         
     }
+
 }

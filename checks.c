@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:30:49 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/08 13:53:02 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:48:49 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ int ft_map_is_valid(t_game *game, char *joined_str)
         exit(EXIT_FAILURE);   
     }
     
-    // check tmb que no sea un rectangulo 
-    if(game->map_heigth == game->map_width)
-        return (0);
+    // // check tmb que no sea un rectangulo 
+    // if(game->map_heigth == game->map_width)
+    //     return (0);
     return(1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/19 12:05:08 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/20 13:59:16 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ static void ft_process_map_line(char *joined_str, t_game *game)
     // printf("%d\n", game->map_heigth);
     //check if map is valid QUITAR QUE AQUI DEVULVA UN INT, SI FALLA EL METODO HACE EXIT
     if(ft_map_is_valid(game, joined_str) == 0)
-        ft_free_game(game, "El mapa no es válido");
+    {
+        printf("invalid map not the correct shape \n");
+        exit(EXIT_FAILURE);
+    }
+       // ft_free_game(game, "El mapa no es válido");
     
     //allocate memory for the map based on the map height
     game->map = malloc(sizeof(t_map *) * game->map_heigth);

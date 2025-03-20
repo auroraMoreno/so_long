@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:35:25 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/08 13:31:44 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/20 12:05:22 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int ft_close_window(t_game *data)
 	exit(0);
 	return (0);
 }
-
 
 int main(int argc, char **argv)
 {
