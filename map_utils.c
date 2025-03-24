@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/20 17:41:14 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/22 11:15:21 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,8 @@ void ft_get_height(char *joined_str, t_game *game)
             i++;
         }
 
-        //aqui ya ha llegado al final de la \n asi que podemos sumarle 1 al height
-        // ya que solo ha entrado al bucle anterior si habia un char
-        // igualmente habrá que checkar si el char leido es 1!!!! 
-        // literal this does't make sense i fear
-        if(current_line_len > 0)
-            game->map_heigth++;
-        
-        //comprobar si el current_line_len (q es width) es igual al width que hay marcado
+        /*comprueba si el current_line_len (q es width) es igual al width que hay marcado*/
         //will probably move this from here at some point but it is what it is for now
-        // si esto da error devolveré 0 pero for now we will just free mem 
         if(game->map_width != current_line_len)
         {
             //ft_free_game(game, "El width no coincide");
@@ -122,6 +114,10 @@ void ft_get_height(char *joined_str, t_game *game)
             ft_putendl_fd("Error.\nMap is not a rectangle.", 2);
             exit(EXIT_FAILURE);
         } 
+
+        /*si current line es mayor que 0 y el width coincide (check arriba) sumamos una al height */
+        if(current_line_len > 0)
+            game->map_heigth++;
         // si disinto de 1, 
         if(joined_str[i] == '\n')
             i++;

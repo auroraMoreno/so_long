@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:33:51 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/08 13:46:53 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/24 09:26:10 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void *ft_set_images(t_game *game, char *img)
 {
 	char *path;
 	void *img_ptr;
-	//int px; 
-	
+		
 	path = ft_strjoin(XPM_PATH, img);
 	img_ptr =  mlx_xpm_file_to_image(game->mlx, path, &game->ghost.width, &game->ghost.height);
 	

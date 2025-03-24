@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/20 11:18:13 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/24 10:17:09 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void ft_render_map(t_game *game);
 // static void ft_process_map_line(char *joined_str, t_game *game);
 void ft_get_height(char *joined_str, t_game *game);
 void ft_get_width(char  *joined_str, t_game *game);
-int ft_map_is_valid(t_game *game, char *joined_str);
+void ft_map_is_valid(t_game *game, char *joined_str);
 void ft_render_map(t_game *game);
 /*MAP CHECKS */
 void ft_valid_route(t_game *game);
@@ -105,12 +105,15 @@ void ft_move_left(t_game *game);
 void ft_move_right(t_game *game);
 int ft_validate_move(t_game *game, int x, int y);
 void ft_change_value(t_game *game, int old_x, int old_y);
+void ft_skip_exit(t_game *game, int x, int y);
 
 
 /*ERRORS AND FREEING MEM*/
 void ft_free_game(t_game *game, char *msg);
 void ft_print_error(char *error);
 void ft_end_game(t_game *game);
+void ft_free_joined_line(char *joined_str, t_game *game, char *msg);
+
 
 void ft_innit_x_row(t_game *game);
 void ft_fill_x_row(t_game *game, char *str_joined);

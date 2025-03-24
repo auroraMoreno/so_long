@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/20 13:59:16 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/24 09:25:21 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,16 @@ static int ft_join_map_line(char *line, char **joined_str)
 
 static void ft_process_map_line(char *joined_str, t_game *game)
 {
-    // hay que obtener el width and height primero 
-    // porq lo vamos a usar en el map is valid 
     //calculate width and height
     ft_get_width(joined_str, game);
     ft_get_height(joined_str, game);
-    // printf("%d\n", game->map_width);
-    // printf("%d\n", game->map_heigth);
     //check if map is valid QUITAR QUE AQUI DEVULVA UN INT, SI FALLA EL METODO HACE EXIT
-    if(ft_map_is_valid(game, joined_str) == 0)
-    {
-        printf("invalid map not the correct shape \n");
-        exit(EXIT_FAILURE);
-    }
-       // ft_free_game(game, "El mapa no es válido");
-    
+    ft_map_is_valid(game, joined_str);    
     //allocate memory for the map based on the map height
     game->map = malloc(sizeof(t_map *) * game->map_heigth);
 	if(!game->map)
-	{
-		free(joined_str);
-		ft_free_game(game, "Error alloc de memoria");		
-	}
+        ft_free_joined_line(joined_str, game, "Error\nMap not allocated.");
     ft_innit_x_row(game);
-
     //add otro metodo que sea fill x_row
     ft_fill_x_row(game, joined_str);
 
@@ -111,7 +97,7 @@ void ft_innit_x_row(t_game *game)
     {
         game->map[i] = malloc(sizeof(t_map) * game->map_width);
         if(!game->map[i])
-            ft_free_game(game, "Error alloc x row");
+            ft_free_game(game, "Error alloc x row"); // ? 
         i++;
     }
 }
@@ -125,11 +111,8 @@ void ft_init_map(t_game *game, char *file)
     // primero open el fichero 
     fd = open(file, O_RDONLY);
     if(fd == -1){
-         // el problema esq libero memoria pero aun no hice innit ni nada
-        //ft_free_game(game, "Invalid file.\n");
         free(game);
-        ft_putendl_fd("File not found.", 2);
-        exit(EXIT_FAILURE);
+        ft_print_error("Error\nFile not found.");
     }
     // luego tendremos que ir linea a linea 
     joined_str = ft_calloc(1, sizeof(char));
@@ -137,13 +120,11 @@ void ft_init_map(t_game *game, char *file)
         ft_free_game(game, "Error en calloc");
     //(podremos uusar el gnl i guess)
     line = get_next_line(fd);
-    // si resulta que es un cuadrado, devolvemos error 
     while(line)
     {
         //join the line 
         if(ft_join_map_line(line,&joined_str) == 0)
-            // SI RETURNS 0 ESQ ESTÁ MAL 
-            ft_free_game(game, "Error en el joinmapline");
+            ft_free_joined_line(joined_str,game,"Error\nError joining map line.");
         //update line
         line = get_next_line(fd);
     }

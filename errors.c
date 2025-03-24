@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:23:18 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/06 10:27:13 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/22 13:26:09 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void ft_free_game(t_game *game, char *msg)
             mlx_destroy_image(game->mlx, game->collectable.img_ptr);
         if(game->exit.img_name)
             mlx_destroy_image(game->mlx, game->exit.img_ptr);
-
+        
         mlx_destroy_window(game->mlx, game->mlx_win);
         mlx_destroy_display(game->mlx);
         free(game->mlx);
@@ -75,6 +75,15 @@ void ft_end_game(t_game *game)
         exit(EXIT_SUCCESS);
     }
 }
+
+
+void ft_free_joined_line(char *joined_str, t_game *game, char *msg)
+{
+    free(joined_str);
+    free(game);
+    ft_print_error(msg);
+}
+
 
 void ft_print_error(char *error)
 {
