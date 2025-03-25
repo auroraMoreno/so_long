@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:22:06 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 13:28:09 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:47:00 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,33 @@ void	ft_skip_exit(t_game *game, int x, int y)
 	{
 		if (game->map[y][x].value == 'C')
 			game->num_collect--;
-		old_x = game->ghost.x_pos;
-		old_y = game->ghost.y_pos;
-		game->ghost.y_pos = y;
-		game->ghost.x_pos = x;
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr,
-			(game->ghost.x_pos * 64), (game->ghost.y_pos * 64));
+		old_x = game->player.x_pos;
+		old_y = game->player.y_pos;
+		game->player.y_pos = y;
+		game->player.x_pos = x;
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->player.img_ptr,
+			(game->player.x_pos * 64), (game->player.y_pos * 64));
 		mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr,
 			(old_x * 64), (old_y * 64));
-		game->map[game->ghost.y_pos][game->ghost.x_pos].value = '0';
+		game->map[game->player.y_pos][game->player.x_pos].value = '0';
 		game->map[y][x].value = 'P';
 	}
 }
 
 void	ft_handle_exit(t_game *game, int x, int y)
 {
-	if (x == game->ghost.x_pos)
+	if (x == game->player.x_pos)
 	{
-		if (game->ghost.y_pos > y)
+		if (game->player.y_pos > y)
 			ft_skip_exit(game, x, y - 1);
-		else if (game->ghost.y_pos < y)
+		else if (game->player.y_pos < y)
 			ft_skip_exit(game, x, y + 1);
 	}
-	else if (y == game->ghost.y_pos)
+	else if (y == game->player.y_pos)
 	{
-		if (game->ghost.x_pos > x)
+		if (game->player.x_pos > x)
 			ft_skip_exit(game, x - 1, y);
-		else if (game->ghost.y_pos < x)
+		else if (game->player.y_pos < x)
 			ft_skip_exit(game, x + 1, y);
 	}
 }
@@ -82,10 +82,10 @@ int	ft_validate_move(t_game *game, int x, int y)
 
 void	ft_change_value(t_game *game, int old_x, int old_y)
 {
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->ghost.img_ptr,
-		(game->ghost.x_pos * 64), (game->ghost.y_pos * 64));
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->player.img_ptr,
+		(game->player.x_pos * 64), (game->player.y_pos * 64));
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->floor.img_ptr,
 		(old_x * 64), (old_y * 64));
 	game->map[old_y][old_x].value = '0';
-	game->map[game->ghost.y_pos][old_x].value = 'P';
+	game->map[game->player.y_pos][old_x].value = 'P';
 }

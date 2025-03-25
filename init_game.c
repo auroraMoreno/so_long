@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:33:51 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/24 10:46:55 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:46:04 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*ft_set_images(t_game *game, char *img)
 
 	path = ft_strjoin(XPM_PATH, img);
 	img_ptr = mlx_xpm_file_to_image(game->mlx, path,
-			&game->ghost.width, &game->ghost.height);
+			&game->player.width, &game->player.height);
 	if (!img_ptr)
 		ft_free_game(game, "Error en init images");
 	free(path);
@@ -38,7 +38,7 @@ void	*ft_set_images(t_game *game, char *img)
 void	ft_init_images(t_game *game)
 {
 	game->floor.img_ptr = ft_set_images(game, FLOOR_XPM);
-	game->ghost.img_ptr = ft_set_images(game, GHOST_XPM);
+	game->player.img_ptr = ft_set_images(game, PLAYER_XPM);
 	game->wall.img_ptr = ft_set_images(game, WALL_XPM);
 	game->collectable.img_ptr = ft_set_images(game, COLLECTABLE_XPM);
 	game->exit.img_ptr = ft_set_images(game, EXIT_XPM);

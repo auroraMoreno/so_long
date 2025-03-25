@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 22:28:44 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:44:49 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "gnl/get_next_line.h"
 
 #define XPM_PATH "xpm/"
-#define GHOST_XPM "shinchan_pegado.xpm"
+#define PLAYER_XPM "shinchan_pegado.xpm"
 #define FLOOR_XPM "floor2.xpm"
 #define WALL_XPM "wall_bus.xpm"
 #define COLLECTABLE_XPM "galletita.xpm"
@@ -57,7 +57,7 @@ typedef struct s_game_data
 	t_item_counter	counter;
 	void			*mlx;
 	void			*mlx_win;
-	t_img			ghost;
+	t_img			player;
 	t_img			collectable;
 	t_img			floor;
 	t_img			wall;

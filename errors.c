@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:23:18 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 13:42:11 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:45:14 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void ft_free_game(t_game *game, char *msg)
     {
         if(game->floor.img_ptr)
             mlx_destroy_image(game->mlx, game->floor.img_ptr); 
-        if(game->ghost.img_ptr)
-            mlx_destroy_image(game->mlx, game->ghost.img_ptr);
+        if(game->player.img_ptr)
+            mlx_destroy_image(game->mlx, game->player.img_ptr);
         if(game->wall.img_ptr)
             mlx_destroy_image(game->mlx, game->wall.img_ptr);
         if(game->collectable.img_name)
@@ -41,8 +41,8 @@ void ft_end_game(t_game *game)
     printf("fin.\n");
     if(game)
     {
-        if(game->ghost.img_ptr)
-            mlx_destroy_image(game->mlx, game->ghost.img_ptr); 
+        if(game->player.img_ptr)
+            mlx_destroy_image(game->mlx, game->player.img_ptr); 
         if(game->collectable.img_ptr)
             mlx_destroy_image(game->mlx, game->collectable.img_ptr); 
         if(game->floor.img_ptr)

@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 10:28:48 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:46:20 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	ft_select_image(t_game *game, char pos, int x, int y)
 {
 	if (pos == 'P')
 	{
-		game->ghost.x_pos = y;
-		game->ghost.y_pos = x;
+		game->player.x_pos = y;
+		game->player.y_pos = x;
 		mlx_put_image_to_window(game->mlx, game->mlx_win,
-			game->ghost.img_ptr, y * 64, x * 64);
+			game->player.img_ptr, y * 64, x * 64);
 	}
 	else if (pos == 'C')
 		mlx_put_image_to_window(game->mlx, game->mlx_win,
