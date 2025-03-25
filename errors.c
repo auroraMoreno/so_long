@@ -6,21 +6,14 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:23:18 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/24 10:33:41 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 13:42:11 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-    for error methods and freeing memory
-*/
-
 #include "so_long.h"
 
-// ARREGLAR ESTE MÉTODO PARA QUE SEA MÁS ABSTRACTO!!!
-// QUE SE PUEDA USAR TANTO SI GANO COMO SI PIERDO!! 
 void ft_free_game(t_game *game, char *msg)
 {
-    //add destroy image for the rest of images
     if(game)
     {
         if(game->floor.img_ptr)
@@ -39,7 +32,6 @@ void ft_free_game(t_game *game, char *msg)
         free(game->mlx);
         free(game);
         ft_print_error(msg);
-        
     }
 }
 
@@ -76,17 +68,22 @@ void ft_end_game(t_game *game)
     }
 }
 
-
-void ft_free_joined_line(char *joined_str, t_game *game, char *msg)
+void	ft_free_joined_line(char *joined_str, t_game *game, char *msg)
 {
-    free(joined_str);
-    free(game);
-    ft_print_error(msg);
+	free(joined_str);
+	free(game);
+	ft_print_error(msg);
 }
 
-
-void ft_print_error(char *error)
+void	free_map_copy(char **map_copy, int i)
 {
-    ft_putendl_fd(error,2);
-    exit(EXIT_FAILURE);
+	while (--i >= 0)
+		free(map_copy[i]);
+	free(map_copy);
+}
+
+void	ft_print_error(char *error)
+{
+	ft_putendl_fd(error, 2);
+	exit(EXIT_FAILURE);
 }

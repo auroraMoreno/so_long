@@ -6,18 +6,11 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:46:06 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 12:57:23 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 13:39:41 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_map_copy(char **map_copy, int i)
-{
-	while (--i >= 0)
-		free(map_copy[i]);
-	free(map_copy);
-}
 
 char	**ft_map_copy(t_map **map, int map_width, int map_height)
 {
