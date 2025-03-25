@@ -6,14 +6,13 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 12:52:32 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:03:50 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx/mlx.h"
 #include <stdlib.h>
 #include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
 #include "gnl/get_next_line.h"
 
 #define XPM_PATH "xpm/"
@@ -106,6 +105,7 @@ void	ft_free_game(t_game *game, char *msg);
 void	ft_print_error(char *error);
 void	ft_end_game(t_game *game);
 void	ft_free_joined_line(char *joined_str, t_game *game, char *msg);
+void	free_map_copy(char **map_copy, int i);
 
 /*KEY HANDLING*/
 int		ft_on_keypress(int keycode, t_game *data);

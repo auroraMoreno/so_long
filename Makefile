@@ -6,7 +6,7 @@
 #    By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/03 14:33:48 by aumoreno          #+#    #+#              #
-#    Updated: 2025/03/25 13:25:14 by aumoreno         ###   ########.fr        #
+#    Updated: 2025/03/25 16:58:14 by aumoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,10 @@ CFLAGS = -Werror -Wextra -Wall -fsanitize=address,leak -g3
 
 SRCS = main.c valid_path_check.c checks.c init_game.c init_map.c map_utils.c errors.c movements_utils.c movements.c gnl/get_next_line_utils.c gnl/get_next_line.c
 
-FT_PRINTF_PATH = ft_printf/
 LIBFT_PATH = libft/
 INCLUDES = -I/usr/include -Imlx
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(FT_PRINTF_PATH)
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(LIBFT_PATH)
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
           
@@ -35,19 +33,17 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 $(EXEC): $(OBJS)
 
 $(EXEC): $(OBJS)
-	@make -C $(FT_PRINTF_PATH) --silent
 	@make -C $(LIBFT_PATH) --silent
-	@$(CC) $(CFLAGS) $(SRCS) $(MLX_FLAGS) -o $(EXEC) -I./libft -L./libft -lft -I./ft_printf -L./ft_printf -l ftprintf
+	@$(CC) $(CFLAGS) $(SRCS) $(MLX_FLAGS) -o $(EXEC) -I./libft -L./libft -lft 
 
 
 clean:
 	rm -f $(OBJS)
-	@make -C $(FT_PRINTF_PATH) clean --silent
+
 
 fclean:  clean
 	rm -f $(EXEC)
 	rm -f $(OBJS)
-	@make -C $(FT_PRINTF_PATH) fclean --silent
 	@make -C $(LIBFT_PATH) fclean --silent
 
 re: fclean all
