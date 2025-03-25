@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 10:38:17 by aumoreno          #+#    #+#             */
-/*   Updated: 2024/09/09 12:35:30 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 13:32:11 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <unistd.h>
 // # include "gnl/get_next_line.h"
 // # include "gnl/get_next_line_bonus.h"
-
 
 int				ft_isalpha(int c);
 
