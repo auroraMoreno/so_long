@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:46:06 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 13:39:41 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:12:29 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**ft_map_copy(t_map **map, int map_width, int map_height)
 		j = 0;
 		map_copy[i] = malloc(sizeof(char) * (map_width + 1));
 		if (!map_copy[i])
-			return (free_map_copy(map_copy, i), (NULL));
+			return (free_map_copy(map_copy, i));
 		while (j < map_width)
 		{
 			map_copy[i][j] = map[i][j].value;
@@ -75,7 +75,7 @@ void	ft_find_player_and_fill(char **map_copy, t_game *game)
 	}
 }
 
-void	ft_validate_flood_fill(t_game *game, char **map_copy)
+void	ft_validate_flood_fill(t_game *game, char **map_copy, char *joined_str)
 {
 	int	i;
 	int	j;
@@ -88,8 +88,9 @@ void	ft_validate_flood_fill(t_game *game, char **map_copy)
 		{
 			if (map_copy[i][j] == 'C' || map_copy[i][j] == 'E')
 			{
-				printf("Invalid path\n");
-				exit(EXIT_FAILURE);
+				free_map_copy(map_copy, game->map_heigth);
+				free(joined_str);
+				ft_free_game(game, 0, "Error\nInvalid Path.");
 			}
 			j++;
 		}
@@ -97,18 +98,19 @@ void	ft_validate_flood_fill(t_game *game, char **map_copy)
 	}
 }
 
-void	ft_valid_route(t_game *game)
+void	ft_valid_route(t_game *game, char *joined_str)
 {
 	char	**map_copy;
 	int		i;
 
 	map_copy = ft_map_copy(game->map, game->map_width, game->map_heigth);
-	if (!map_copy)
+	if (map_copy == NULL)
 	{
-		exit(EXIT_FAILURE);
+		free(joined_str);
+		ft_free_game(game, 0, "Error\n");
 	}
 	ft_find_player_and_fill(map_copy, game);
-	ft_validate_flood_fill(game, map_copy);
+	ft_validate_flood_fill(game, map_copy, joined_str);
 	i = 0;
 	while (i < game->map_heigth)
 	{

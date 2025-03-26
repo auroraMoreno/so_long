@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:35:25 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/24 10:39:34 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 23:56:52 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	if (!ft_is_ber(argv[1]))
 		ft_print_error("Error\nInvalid file.");
 	game = ft_init_game(argv[1]);
-	mlx_hook(game->mlx_win, 17, 1L << 17, ft_close_window, game);
+	mlx_hook(game->mlx_win, 17, 1L << 17, ft_close_window, game); // *aqui* 
 	mlx_hook(game->mlx_win, 3, 1L << 1, ft_on_keypress, game);
 	mlx_loop(game->mlx);
 	return (0);

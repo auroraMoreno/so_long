@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/24 11:01:45 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/25 23:37:23 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static void	ft_process_map_line(char *joined_str, t_game *game)
 	game->map = malloc(sizeof(t_map *) * game->map_heigth);
 	if (!game->map)
 		ft_free_joined_line(joined_str, game, "Error\nMap not allocated.");
-	ft_innit_x_row(game);
+	ft_innit_x_row(game,joined_str);
 	ft_fill_x_row(game, joined_str);
-	ft_valid_route(game);
+	ft_valid_route(game, joined_str);
 }
 
 void	ft_fill_x_row(t_game *game, char *joined_str)
@@ -72,7 +72,7 @@ void	ft_fill_x_row(t_game *game, char *joined_str)
 	}
 }
 
-void	ft_innit_x_row(t_game *game)
+void	ft_innit_x_row(t_game *game, char *joined_str)
 {
 	int	i;
 
@@ -81,7 +81,7 @@ void	ft_innit_x_row(t_game *game)
 	{
 		game->map[i] = malloc(sizeof(t_map) * game->map_width);
 		if (!game->map[i])
-			ft_free_game(game, "Error alloc x row");
+			ft_free_joined_line(joined_str,game,"Error\nError alocating the map.");
 		i++;
 	}
 }
@@ -100,7 +100,7 @@ void	ft_init_map(t_game *game, char *file)
 	}
 	joined_str = ft_calloc(1, sizeof(char));
 	if (!joined_str)
-		ft_free_game(game, "Error en calloc");
+		ft_free_game(game, 0, "Error\nError with memory.");
 	line = get_next_line(fd);
 	while (line)
 	{

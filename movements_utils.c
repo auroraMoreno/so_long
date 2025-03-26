@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:22:06 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 22:47:00 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/26 09:55:39 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,11 @@ int	ft_validate_move(t_game *game, int x, int y)
 	{
 		if (game->num_collect == 0)
 		{
-			ft_end_game(game);
+			ft_free_game(game, 1, "");
 			return (1);
 		}
 		else
 		{
-			printf("no tienes todos los collectables u cant leave\n");
 			ft_handle_exit(game, x, y);
 			return (0);
 		}

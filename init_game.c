@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:33:51 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 22:46:04 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:00:48 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 
 void	ft_init_game_props(t_game *game)
 {
+	game->mlx = NULL;
+	game->mlx_win = NULL;
 	game->num_collect = 0;
 	game->counter.n_exits = 0;
 	game->counter.n_player = 0;
 	game->counter.n_floor = 0;
 	game->steps_counter = 0;
+	game->floor.img_ptr = NULL;
+	game->player.img_ptr = NULL;
+	game->wall.img_ptr = NULL;
+	game->collectable.img_ptr = NULL;
+	game->exit.img_ptr = NULL;
 }
 
 void	*ft_set_images(t_game *game, char *img)
@@ -30,7 +37,7 @@ void	*ft_set_images(t_game *game, char *img)
 	img_ptr = mlx_xpm_file_to_image(game->mlx, path,
 			&game->player.width, &game->player.height);
 	if (!img_ptr)
-		ft_free_game(game, "Error en init images");
+		ft_free_game(game, 0, "Error\nError setting image.");
 	free(path);
 	return (img_ptr);
 }
@@ -52,17 +59,17 @@ t_game	*ft_init_game(char *file)
 	if (!game)
 	{
 		free(game);
-		exit(EXIT_FAILURE);
+		ft_print_error("Error\nError allocating game memory.");
 	}
 	ft_init_game_props(game);
 	ft_init_map(game, file);
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		ft_free_game(game, "MLX mal instanciado");
+		ft_free_game(game, 0, "Error\nProblem instancing MLX.");
 	game->mlx_win = mlx_new_window(game->mlx,
 			game->map_width * 64, game->map_heigth * 64, "so_long");
 	if (!game->mlx_win)
-		ft_free_game(game, "MLX win mal instanciado");
+		ft_free_game(game, 0, "Error\nError instancing the window.");
 	ft_init_images(game);
 	ft_render_map(game);
 	return (game);

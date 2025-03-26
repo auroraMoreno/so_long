@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 22:44:49 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:05:06 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ void	ft_init_images(t_game *game);
 void	ft_fill_x_row(t_game *game, char *str_joined);
 void	ft_get_height(char *joined_str, t_game *game);
 void	ft_get_width(char *joined_str, t_game *game);
-void	ft_innit_x_row(t_game *game);
+void	ft_innit_x_row(t_game *game, char *joined_str);
 void	ft_render_map(t_game *game);
 
 /*MAP CHECKS */
 void	ft_map_is_valid(t_game *game, char *joined_str);
-void	ft_valid_route(t_game *game);
-void	ft_validate_flood_fill(t_game *game, char **map_copy);
+void	ft_valid_route(t_game *game, char *joined_str);
+void	ft_validate_flood_fill(t_game *game, char **map_copy, char *joined_str);
 void	ft_find_player_and_fill(char **map_copy, t_game *game);
 void	ft_flood_fill(char **map_copy, int x, int y, t_game *game);
 int		ft_is_ber(char *str);
@@ -101,11 +101,13 @@ void	ft_change_value(t_game *game, int old_x, int old_y);
 void	ft_skip_exit(t_game *game, int x, int y);
 
 /*ERRORS AND FREEING MEM*/
-void	ft_free_game(t_game *game, char *msg);
+void 	ft_free_game(t_game *game, int n, char *msg);
 void	ft_print_error(char *error);
-void	ft_end_game(t_game *game);
+void 	ft_end_game();
 void	ft_free_joined_line(char *joined_str, t_game *game, char *msg);
-void	free_map_copy(char **map_copy, int i);
+char	**free_map_copy(char **map_copy, int i);
+void 	ft_destroy_images(t_game *game); 
+
 
 /*KEY HANDLING*/
 int		ft_on_keypress(int keycode, t_game *data);
