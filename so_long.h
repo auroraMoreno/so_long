@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:26:59 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/26 11:05:06 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:56:48 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	ft_move_right(t_game *game);
 int		ft_validate_move(t_game *game, int x, int y);
 void	ft_change_value(t_game *game, int old_x, int old_y);
 void	ft_skip_exit(t_game *game, int x, int y);
+void 	ft_print_steps(int steps);
+
 
 /*ERRORS AND FREEING MEM*/
 void 	ft_free_game(t_game *game, int n, char *msg);

@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:22:06 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/26 09:55:39 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:06:31 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_skip_exit(t_game *game, int x, int y)
 			(old_x * 64), (old_y * 64));
 		game->map[game->player.y_pos][game->player.x_pos].value = '0';
 		game->map[y][x].value = 'P';
+		game->steps_counter++;
+		ft_print_steps(game->steps_counter);
 	}
 }
 
@@ -62,6 +64,8 @@ int	ft_validate_move(t_game *game, int x, int y)
 	{
 		if (game->num_collect == 0)
 		{
+			game->steps_counter++;
+			ft_print_steps(game->steps_counter);
 			ft_free_game(game, 1, "");
 			return (1);
 		}
