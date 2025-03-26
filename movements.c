@@ -6,13 +6,13 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 08:16:33 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/26 12:55:20 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:19:49 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void ft_print_steps(int steps)
+void	ft_print_steps(int steps)
 {
 	ft_putstr_fd("Steps: ", STDOUT_FILENO);
 	ft_putnbr_fd(steps, STDOUT_FILENO);

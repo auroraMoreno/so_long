@@ -6,7 +6,7 @@
 #    By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/25 22:23:56 by aumoreno          #+#    #+#              #
-#    Updated: 2025/03/25 22:28:28 by aumoreno         ###   ########.fr        #
+#    Updated: 2025/03/26 13:34:37 by aumoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ LFLAGS	=	-L./libft -lft
 MLX_DIR	=	./mlx
 MLX		=	libmlx.a
 
-SRC		=	main.c valid_path_check.c checks.c init_game.c init_map.c map_utils.c errors.c movements_utils.c movements.c gnl/get_next_line_utils.c gnl/get_next_line.c
+SRC		=	main.c valid_path_check.c checks.c init_game.c init_map.c map_utils.c free_utils.c free_game.c movements_utils.c movements.c gnl/get_next_line_utils.c gnl/get_next_line.c
 
 
 OBJ		=	$(SRC:%.c=%.o)

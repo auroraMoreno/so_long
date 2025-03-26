@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 07:43:07 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 23:37:23 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:20:38 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	ft_process_map_line(char *joined_str, t_game *game)
 	game->map = malloc(sizeof(t_map *) * game->map_heigth);
 	if (!game->map)
 		ft_free_joined_line(joined_str, game, "Error\nMap not allocated.");
-	ft_innit_x_row(game,joined_str);
+	ft_innit_x_row(game, joined_str);
 	ft_fill_x_row(game, joined_str);
 	ft_valid_route(game, joined_str);
 }
@@ -81,7 +81,8 @@ void	ft_innit_x_row(t_game *game, char *joined_str)
 	{
 		game->map[i] = malloc(sizeof(t_map) * game->map_width);
 		if (!game->map[i])
-			ft_free_joined_line(joined_str,game,"Error\nError alocating the map.");
+			ft_free_joined_line(joined_str, game,
+				"Error\nError alocating the map.");
 		i++;
 	}
 }
