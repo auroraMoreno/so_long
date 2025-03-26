@@ -6,7 +6,7 @@
 /*   By: aumoreno < aumoreno@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:55:46 by aumoreno          #+#    #+#             */
-/*   Updated: 2025/03/25 22:46:20 by aumoreno         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:42:27 by aumoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_get_width(char	*joined_str, t_game	*game)
 		game->map_width++;
 	if (game->map_width == 0 || joined_str[game->map_width] == 0)
 		ft_free_joined_line(joined_str, game,
-			"Error\nError calculating the width.");
+			"Error\nError with map dimensions.");
 }
 
 void	ft_get_height(char *joined_str, t_game *game)
